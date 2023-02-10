@@ -4,7 +4,7 @@ from django.contrib.postgres.fields import ArrayField
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Student_Form(models.Model):
-    student=models.ForeignKey(User,on_delete=models.CASCADE)
+    student=models.OneToOneField(User,on_delete=models.CASCADE,unique=True)
     full_name=models.CharField(max_length=30)
     roll_number=models.CharField(max_length=20)
     branch=models.CharField(max_length=20)
