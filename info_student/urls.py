@@ -3,6 +3,6 @@ from  .views import *
 
 
 urlpatterns = [
-    path('student_form/',StudentView.as_view()),
+    path('student_form/<str:pk>',StudentView.as_view()),
 ]
 
