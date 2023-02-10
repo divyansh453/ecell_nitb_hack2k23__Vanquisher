@@ -15,20 +15,21 @@ from django.conf import settings
 from django.utils.translation import gettext_lazy 
 import json 
 from account.models import User
-
-
-
 class StudentView(ListCreateAPIView):
     serializer_class=StudentSerializer
     queryset=Student_Form.objects.all()
     def perform_create(self,serializer):
+        employment_type=serializer.validated_data["employment_type"]
+        employment_type=employment_type.title()
         pk=self.kwargs.get('pk')
         user=User.objects.get(id=pk)
-        serializer.save(student=user,full_name=user.full_name,branch=user.branch,roll_number=user.roll_number)
+        serializer.save(student=user,full_name=user.full_name,branch=user.branch,roll_number=user.roll_number,employment_type=employment_type)
     def get_queryset(self):
         pk=self.kwargs.get('pk')
         user=User.objects.get(id=pk)
         return self.queryset.filter(student=user)
+
+
 
 
 

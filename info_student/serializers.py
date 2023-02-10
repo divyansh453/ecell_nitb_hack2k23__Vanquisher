@@ -7,5 +7,9 @@ class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model=Student_Form
         fields=['student','skills','employment_type','package','company','resources','placement','cgpa']
+class CompanySerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Company_User
+        fields="__all__"
 
 
