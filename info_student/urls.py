@@ -1,8 +1,8 @@
 from django.urls import path,include
-# from  account.views 
+from  .views import *
 
 
-# urlpatterns = [
-#    path('student_form/',RegisterView.as_view(),name='register'),
-# ]
+urlpatterns = [
+    path('student_form/',StudentView.as_view()),
+]
 
