@@ -1,0 +1,4 @@
+release: python manage.py makemigrations --no-input
+release: python manage.py migrate --no-input
+
+web: gunicorn ecell_nitb_hack2k23__Vanquisher.wsgi
