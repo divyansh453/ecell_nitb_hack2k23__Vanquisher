@@ -9,27 +9,69 @@ from rest_framework import status
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi 
 from rest_framework.generics import ListCreateAPIView
-from .serializers import StudentSerializer
-from .models import Student_Form
+from .serializers import *
+from .models import *
 from django.conf import settings
 from django.utils.translation import gettext_lazy 
 import json 
 from account.models import User
+from .utils import Util
 class StudentView(ListCreateAPIView):
     serializer_class=StudentSerializer
     queryset=Student_Form.objects.all()
     def perform_create(self,serializer):
-        employment_type=serializer.validated_data["employment_type"]
-        employment_type=employment_type.title()
+        job_title=serializer.validated_data["job_title"]
+        job_title=job_title.title()
         pk=self.kwargs.get('pk')
         user=User.objects.get(id=pk)
-        serializer.save(student=user,full_name=user.full_name,branch=user.branch,roll_number=user.roll_number,employment_type=employment_type)
+        serializer.save(student=user,full_name=user.full_name,branch=user.branch,roll_number=user.roll_number,job_title=job_title)
     def get_queryset(self):
         pk=self.kwargs.get('pk')
         user=User.objects.get(id=pk)
         return self.queryset.filter(student=user)
+class CompanyView(ListCreateAPIView):
+    serializer_class=CompanySerializer
+    queryset=Company_User.objects.all()
+    def perform_create(self,serializer):
+        pk=self.kwargs.get("pk")
+        job=serializer.validated_data["job_title"]
+        job=job.title()
+        user=User.objects.get(id=pk)
+        user_email=SearchJob.objects.filter(job_title=job)
+        email_of_all=[]
+        users_all=[]
+        for users in user_email:
+            users_all.append(users)
+            email_of_all.append(users.email)
+        for user_email in users_all:
+            email_body = 'Hi '+user.full_name + \
+            '\nThis candidate is elligible for the job offred by you.\nDetails of User:\n'+\
+                'Name:'+user_email.full_name+'\nPhone_number:'+user_email.mobile_number+'\nEmail:\n'+user_email.email
+            data = {'email_body': email_body, 'to_email': user.email,
+                'email_subject': 'Elligible Candidate'}
+            Util.send_email(data)
+        serializer.save(user=user)
+    def get_queryset(self):
+        pk=self.kwargs.get("pk")
+        user=User.objects.get(id=pk)
+        return self.queryset.filter(user=user)
+class SearchJobView(ListCreateAPIView):
+    serializer_class=SearchJobSerializer
+    queryset=SearchJob.objects.all()
+    def perform_create(self,serializer):
+        pk=self.kwargs.get('pk')
+        user=User.objects.get(id=pk)
+        job_title=serializer.validated_data["job_title"]
+        job=job_title.title()
+        serializer.save(user=user,full_name=user.full_name,email=user.email,job_title=job)
+    def get_queryset(self):
+        pk=self.kwargs.get('pk')
+        user=User.objects.get(id=pk)
+        return self.queryset.filter(user=user)
 
-
-
-
-
+class AdminView(ListCreateAPIView):
+    serializer_class=AdminSerializer
+    queryset=Student_Form.objects.all()
+    def get_queryset(self):
+        ordering = ['-package']
+        return self.queryset.filter()

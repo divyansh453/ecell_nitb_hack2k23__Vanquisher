@@ -19,6 +19,8 @@ class Student_Form(models.Model):
 
     def __str__(self):
         return self.full_name +" "+self.roll_number
+    class Meta:
+        ordering = ['-placement']
 class Company_User(models.Model):  
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     company_name=models.CharField(max_length=100)
@@ -39,4 +41,8 @@ class SearchJob(models.Model):
     linkedin=models.CharField(max_length=15,null=True)
     def __str__(self):
         return self.full_name+" "+self.mobile_number
+
+
+
+
 
