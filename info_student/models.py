@@ -14,7 +14,7 @@ class Student_Form(models.Model):
     company=models.CharField(max_length=50)
     resources=models.TextField(max_length=500,null=True)
     placement=models.CharField(max_length=9)
-    cgpa=models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(10)],null=True)
+    cgpa=models.FloatField(validators=[MinValueValidator(1),MaxValueValidator(10)],null=True)
 
     def __str__(self):
         return self.full_name +" "+self.roll_no
