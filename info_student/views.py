@@ -23,6 +23,8 @@ class StudentView(ListCreateAPIView):
     def perform_create(self,serializer):
         job_title=serializer.validated_data["job_title"]
         skills=serializer.validated_data["skills"]
+        company=serializer.validated_data["company"]
+        company=company.title()
         skill_set=Skills.objects.all()
         sk=[]
         for skill_ in skill_set:
@@ -46,7 +48,7 @@ class StudentView(ListCreateAPIView):
         user=User.objects.get(id=pk)
         course=user.course.upper()
         branch=user.branch.upper()
-        serializer.save(student=user,full_name=user.full_name,branch=branch,roll_number=user.roll_number,job_title=job_title,course=course)
+        serializer.save(student=user,full_name=user.full_name,branch=branch,roll_number=user.roll_number,job_title=job_title,course=course,company=company)
     def get_queryset(self):
         pk=self.kwargs.get('pk')
         user=User.objects.get(id=pk)
@@ -118,6 +120,13 @@ class AdminView_all(ListCreateAPIView):
         b=1
     def get_queryset(self):
         return self.queryset.filter()
+class AdminView_Company(ListCreateAPIView):
+    serializer_class=AdminSerializer
+    queryset=Student_Form.objects.all()
+    def get_queryset(self):
+        company=self.kwargs.get('company')
+        company=company.title()
+        return self.queryset.filter(company=company)
 class SkillView(ListCreateAPIView):
     serializer_class=SkillSerializer
     queryset=Skills.objects.all()
@@ -126,7 +135,7 @@ class SkillView(ListCreateAPIView):
 import openai
 @api_view(['GET'])
 def gpt3(request,text):
-    stext="Urls of 5 best courses for "+text +"."
+    stext="Urls of 5 best courses  for "+text +"."
     openai.api_key='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'
     response=openai.Completion.create(
         engine="davinci-instruct-beta",
@@ -138,7 +147,14 @@ def gpt3(request,text):
         presence_penalty=0,
         stop=["\"\"\""]
      )
+  
     content=response.choices[0].text.split(".")
     a=response.choices[0].text
-    return Response({"About":a})
+    response = openai.Image.create(
+    prompt=" Search   "+text+"computer programming language coding  Images. ",
+    n=1,
+    size="1024x1024"
+    )
+    image_url = response['data'][0]['url']
+    return Response({"About":a,"image_url":image_url})
     
