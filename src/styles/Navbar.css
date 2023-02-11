@@ -1,0 +1,22 @@
+.navbar{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+.navbar h2{
+    margin-left: 2rem;
+}
+.navbar ul{
+    display: flex;
+    align-items: center ;
+    margin-right: 1rem;
+}
+.navlist{
+    text-decoration: none;
+    color: black;
+    margin: 0 1rem;
+}
+

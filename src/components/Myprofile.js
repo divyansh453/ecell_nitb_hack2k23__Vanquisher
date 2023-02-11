@@ -1,6 +1,8 @@
 import React,{useState,useRef} from 'react';
 import "../styles/Myprofile.css";
 import axios from 'axios';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
    
@@ -66,31 +68,32 @@ const Myprofile = () => {
     }
   return (
     <div className='myprofile'>
-        <form onSubmit={submitHandler}>
-            <div>
+        <form onSubmit={submitHandler} className="profile_form">
+          <div className='profilefirst'>
+            <div className='inputcontrol'>
               <label>Name</label>
-              <input type="text" name='name' value="" onChange={userHandler}/>
+              <input type="text" name='name' value="" onChange={userHandler} className="inputset"/>
             </div>
 
-            <div>
+            <div className='inputcontrol'>
               <label>University Roll No.</label>
-              <input type="text" name='roll' value="" onChange={userHandler}/>
+              <input type="text" name='roll' value="" onChange={userHandler} className="inputset"/>
             </div>
 
 
 
-            <div>
+            <div className='inputcontrol'>
             <label>Employment Type</label>
-            <select name="employment" id="employment" value={formvalues.employment} onChange={userHandler}>
+            <select name="employment"  className="inputset" value={formvalues.employment} onChange={userHandler}>
                 <option value="" disabled selected>Select</option>
               <option value="Internship">Internship</option>
               <option value="Placement">Placement</option>
            </select>
             </div>
 
-            <div>
+            <div className='inputcontrol'>
             <label>Placement</label>
-            <select name="placement" id="placement" value={formvalues.placement} onChange={userHandler}>
+            <select name="placement" className="inputset" value={formvalues.placement} onChange={userHandler}>
                 <option value="" disabled selected>Select</option>
               <option value="Internship">OnCampus</option>
               <option value="Placement">OffCampus</option>
@@ -98,43 +101,52 @@ const Myprofile = () => {
             </div>
 
 
-            <div>
-              <input type="text" name="skills" onChange={(e)=>setskill(e.target.value)}/>
-              <p onClick={updateskills}>Ok</p>
+            <div className='inputcontrol'>
+              <label>Skills</label>
+              <input type="text" name="skills" onChange={(e)=>setskill(e.target.value)}  className="inputset"/>
+              <Stack spacing={0} direction="row" className='profile_submit'>
+                 <Button variant="contained" onClick={updateskills}>Add</Button>
+              </Stack>
               
+            </div>
+            </div>
+            <div className='profilefirst'>
+
+            <div className='inputcontrol'>
+            <label>Job Title</label>
+               <input type="text" name="job_title" value={formvalues.job_title} onChange={userHandler} className="inputset"/>
             </div>
 
             
 
-            <div>
-            <label>Job Title</label>
-               <input type="text" name="job_title" value={formvalues.job_title} onChange={userHandler}/>
-            </div>
+            
 
-
-            <div>
+            <div className='inputcontrol'>
               <label>CGPA</label>
-              <input type="text" name='cgpa' value={formvalues.cgpa} onChange={userHandler}/>
+              <input type="text" name='cgpa' value={formvalues.cgpa} onChange={userHandler} className="inputset"/>
             </div>
 
-            <div>
+            <div className='inputcontrol'>
               <label>Company</label>
-              <input type="text" name='company' value={formvalues.company} onChange={userHandler}/>
+              <input type="text" name='company' value={formvalues.company} onChange={userHandler} className="inputset"/>
             </div>
 
-            <div>
+            <div className='inputcontrol'>
               <label>Package</label>
-              <input type="text" name='package' value={formvalues.package} onChange={userHandler}/>
+              <input type="text" name='package' value={formvalues.package} onChange={userHandler} className="inputset"/>
             </div>
 
-            <div>
+            {/* <div>
                 <label>Resources (Optional)</label>
                 <textarea id="resources" name="resources" rows="4" cols="50" onChange={userHandler}>
                 {formvalues.resource}
                     </textarea>
-            </div>
+            </div> */}
 
-            <input type="submit"/>
+           <Stack spacing={0} direction="row">
+              <Button variant="contained" fullWidth className='profile_submit'>Seek Job</Button>
+           </Stack>
+            </div>
             
         </form>
     </div>

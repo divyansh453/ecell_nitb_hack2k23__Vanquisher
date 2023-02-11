@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@800;400&display=swap');
+.home{
+    width:100vw;
+    height:100vh;
+    overflow: hidden;
+    background-image: url("../images/bgMANIT.svg");
+    background-size: cover;
+    font-family: 'Open Sans', sans-serif;
+}
+.home_section{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.home_section h1{
+    width:60rem;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 2rem;
+    font-size: 3rem;
+}
+.select_record{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.home_btn{
+    width:20rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: space-between;
+    margin-bottom: 10rem;
+}
+
+.records_selector{
+    /* width:100%; */
+    padding:0.5rem 2rem ;
+    margin: 1rem 0;
+    border-radius: 5px;
+}
+#submit{
+    /* width: 100%;
+    padding:0.5rem 1rem;
+   
+    color: black;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400; */
+    background-color: #33d67b;
+    padding: 0.5rem 0;
+}
