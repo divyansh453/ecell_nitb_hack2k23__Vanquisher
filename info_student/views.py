@@ -137,7 +137,7 @@ def gpt3(request,text):
         frequency_penalty=0,
         presence_penalty=0,
         stop=["\"\"\""]
-    )
+     )
     content=response.choices[0].text.split(".")
     a=response.choices[0].text
     return Response({"About":a})
