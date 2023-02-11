@@ -29,7 +29,7 @@
     justify-content: space-between;
 }
 .home_btn{
-    width:20rem;
+    width:17rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -55,5 +55,6 @@
     font-family: 'Open Sans', sans-serif;
     font-weight: 400; */
     background-color: #33d67b;
-    padding: 0.5rem 0;
+    margin-top: 1rem;
+    padding: 0.7rem 0;
 }

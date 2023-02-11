@@ -95,8 +95,8 @@ const Myprofile = () => {
             <label>Placement</label>
             <select name="placement" className="inputset" value={formvalues.placement} onChange={userHandler}>
                 <option value="" disabled selected>Select</option>
-              <option value="Internship">OnCampus</option>
-              <option value="Placement">OffCampus</option>
+              <option value="Oncampus">OnCampus</option>
+              <option value="OffCampus">OffCampus</option>
            </select>
             </div>
 
