@@ -19,8 +19,33 @@ from .utils import Util
 class StudentView(ListCreateAPIView):
     serializer_class=StudentSerializer
     queryset=Student_Form.objects.all()
+    skill=[]
     def perform_create(self,serializer):
         job_title=serializer.validated_data["job_title"]
+        skills=serializer.validated_data["skills"]
+        skill_set=Skills.objects.all()
+        # print(type(skill_set))
+        print(skills)
+        print(skill_set)
+        sk=[]
+        for skill_ in skill_set:
+            sk.append(skill_.skill)
+        for skil in skills:
+            if skil  not in  sk:
+                print(skil)
+                data={
+                    "skill":skil,
+                    "rate":1
+                }
+                skills_set=SkillSerializer(data=data)
+                if skills_set.is_valid():
+                    print("valid")
+                    skills_set.save()
+            else:
+                s=Skills.objects.get(skill=skil)
+                s.rate+=1
+                s.save()
+
         job_title=job_title.title()
         pk=self.kwargs.get('pk')
         user=User.objects.get(id=pk)
@@ -72,6 +97,16 @@ class SearchJobView(ListCreateAPIView):
 class AdminView(ListCreateAPIView):
     serializer_class=AdminSerializer
     queryset=Student_Form.objects.all()
+    try:
+        for user in queryset:
+            if user.Days_till>1460:
+                user.delete()
+    except:
+        b=1
     def get_queryset(self):
-        ordering = ['-package']
         return self.queryset.filter()
+class SkillView(ListCreateAPIView):
+    serializer_class=SkillSerializer
+    queryset=Skills.objects.all()
+    def perform_create(self,serializer):
+        serializer.save()

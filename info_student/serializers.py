@@ -20,5 +20,9 @@ class AdminSerializer(serializers.ModelSerializer):
     class Meta:
         model=Student_Form
         fields="__all__"
+class SkillSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Skills
+        fields="__all__"
 
 

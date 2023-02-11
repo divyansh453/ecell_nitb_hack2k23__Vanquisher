@@ -2,6 +2,9 @@ from django.db import models
 from account.models import User
 from django.contrib.postgres.fields import ArrayField
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.utils import timezone
+from datetime import date
+import datetime
 
 class Student_Form(models.Model):
     student=models.OneToOneField(User,on_delete=models.CASCADE,unique=True)
@@ -16,11 +19,22 @@ class Student_Form(models.Model):
     resources=models.TextField(max_length=500,null=True,blank=True)
     placement=models.CharField(max_length=20)
     cgpa=models.FloatField(validators=[MinValueValidator(1),MaxValueValidator(10)],null=True)
+    date=models.DateField(default=date.today())
 
     def __str__(self):
         return self.full_name +" "+self.roll_number
     class Meta:
         ordering = ['-placement']
+    @property
+    def Days_till(self):
+        today=date.today()
+        days_till=today-self.date
+        days_till=str(days_till)
+        days_till=days_till.split(' d',1)
+        days_till=days_till[0]
+        days_till=int(days_till)
+        return days_till
+    
 class Company_User(models.Model):  
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     company_name=models.CharField(max_length=100)
@@ -41,6 +55,14 @@ class SearchJob(models.Model):
     linkedin=models.CharField(max_length=15,null=True)
     def __str__(self):
         return self.full_name+" "+self.mobile_number
+class Skills(models.Model):
+    skill=models.CharField(max_length=20)
+    rate=models.IntegerField()
+    def __str__(self):
+        return self.skill+" "+str(self.rate)
+    #@property
+    # def skill(self):
+    #     return self.skill
 
 
 
