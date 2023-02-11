@@ -11,6 +11,7 @@ class Student_Form(models.Model):
     full_name=models.CharField(max_length=30)
     roll_number=models.CharField(max_length=20)
     branch=models.CharField(max_length=20)
+    course=models.CharField(max_length=10)
     skills = ArrayField(models.CharField(max_length=20),blank=True)
     employment_type=models.CharField(max_length=100)
     job_title=models.CharField(max_length=100)

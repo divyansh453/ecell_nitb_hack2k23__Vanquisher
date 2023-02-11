@@ -44,7 +44,9 @@ class StudentView(ListCreateAPIView):
         job_title=job_title.title()
         pk=self.kwargs.get('pk')
         user=User.objects.get(id=pk)
-        serializer.save(student=user,full_name=user.full_name,branch=user.branch,roll_number=user.roll_number,job_title=job_title)
+        course=user.course.upper()
+        branch=user.branch.upper()
+        serializer.save(student=user,full_name=user.full_name,branch=branch,roll_number=user.roll_number,job_title=job_title,course=course)
     def get_queryset(self):
         pk=self.kwargs.get('pk')
         user=User.objects.get(id=pk)
@@ -99,6 +101,22 @@ class AdminView(ListCreateAPIView):
     except:
         b=1
     def get_queryset(self):
+        course=self.kwargs.get('course')
+        branch=self.kwargs.get('branch')
+        if course and branch:
+            course=course.upper()
+            branch=branch.upper()
+            return self.queryset.filter(course=course,branch=branch)
+class AdminView_all(ListCreateAPIView):
+    serializer_class=AdminSerializer
+    queryset=Student_Form.objects.all()
+    try:
+        for user in queryset:
+            if user.Days_till>1460:
+                user.delete()
+    except:
+        b=1
+    def get_queryset(self):
         return self.queryset.filter()
 class SkillView(ListCreateAPIView):
     serializer_class=SkillSerializer
@@ -108,7 +126,7 @@ class SkillView(ListCreateAPIView):
 import openai
 @api_view(['GET'])
 def gpt3(request,text):
-    stext="What is "+text+" ?"
+    stext="Urls of 5 best courses for "+text +"."
     openai.api_key='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'
     response=openai.Completion.create(
         engine="davinci-instruct-beta",

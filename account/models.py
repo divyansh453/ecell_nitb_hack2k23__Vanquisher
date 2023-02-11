@@ -10,7 +10,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class UserManager(BaseUserManager):
-    def create_user(self,roll_number,branch,email, full_name ,age, gender,mobile_number,password2, password=None):
+    def create_user(self,roll_number,branch,course,email, full_name ,age, gender,mobile_number,password2, password=None):
         """
         Creates and saves a User with the given email, name ,tc and password.
         """
@@ -24,6 +24,7 @@ class UserManager(BaseUserManager):
         user = self.model(
             roll_number=roll_number,
             branch=branch,
+            course=course,
             mobile_number=mobile_number,
             email=self.normalize_email(email),
             full_name=full_name,
@@ -36,7 +37,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self,roll_number,branch,email, full_name  ,age, gender,mobile_number,password2,password=None):
+    def create_superuser(self,roll_number,branch,email,course, full_name  ,age, gender,mobile_number,password2,password=None):
         """
         Creates and saves a superuser with the given email, name , tc and password.
         """
@@ -49,6 +50,7 @@ class UserManager(BaseUserManager):
         user = self.create_user(
             roll_number=roll_number,
             branch=branch,
+            course=course,
             mobile_number=mobile_number,
             password=password,
             email=email,
@@ -65,6 +67,7 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser):
     full_name=models.CharField(max_length=30)
     branch=models.CharField(max_length=20)
+    course=models.CharField(max_length=10)
     email=models.EmailField(unique=True)
     mobile_number=models.CharField(max_length=10,unique=True)
     roll_number=models.CharField(max_length=20,unique=True)
@@ -81,7 +84,7 @@ class User(AbstractBaseUser):
 
 
     USERNAME_FIELD='roll_number'
-    REQUIRED_FIELDS= ['email','mobile_number','full_name','branch','age','gender','password2']
+    REQUIRED_FIELDS= ['email','mobile_number','full_name','branch','course','age','gender','password2']
 
     def __str__(self):
         return self.full_name+  ' , ' +self.roll_number
