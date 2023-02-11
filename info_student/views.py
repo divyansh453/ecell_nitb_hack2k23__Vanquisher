@@ -24,22 +24,17 @@ class StudentView(ListCreateAPIView):
         job_title=serializer.validated_data["job_title"]
         skills=serializer.validated_data["skills"]
         skill_set=Skills.objects.all()
-        # print(type(skill_set))
-        print(skills)
-        print(skill_set)
         sk=[]
         for skill_ in skill_set:
             sk.append(skill_.skill)
         for skil in skills:
             if skil  not in  sk:
-                print(skil)
                 data={
                     "skill":skil,
                     "rate":1
                 }
                 skills_set=SkillSerializer(data=data)
                 if skills_set.is_valid():
-                    print("valid")
                     skills_set.save()
             else:
                 s=Skills.objects.get(skill=skil)
@@ -110,3 +105,22 @@ class SkillView(ListCreateAPIView):
     queryset=Skills.objects.all()
     def perform_create(self,serializer):
         serializer.save()
+import openai
+@api_view(['GET'])
+def gpt3(request,text):
+    stext="What is "+text+" ?"
+    openai.api_key='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'
+    response=openai.Completion.create(
+        engine="davinci-instruct-beta",
+        prompt=stext,
+        temperature=0.1,
+        max_tokens=1000,
+        top_p=1,
+        frequency_penalty=0,
+        presence_penalty=0,
+        stop=["\"\"\""]
+    )
+    content=response.choices[0].text.split(".")
+    a=response.choices[0].text
+    return Response({"About":a})
+    
