@@ -127,6 +127,15 @@ class AdminView_Company(ListCreateAPIView):
         company=self.kwargs.get('company')
         company=company.title()
         return self.queryset.filter(company=company)
+@api_view(['GET'])
+def  AdminView_Skill(request,skill):
+    student=Student_Form.objects.all()
+    user=[]
+    for skill_set in student:
+        if skill in skill_set.skills:
+            user.append(skill_set)
+    serializer=AdminSerializer(user,many=True)
+    return Response(serializer.data)
 class SkillView(ListCreateAPIView):
     serializer_class=SkillSerializer
     queryset=Skills.objects.all()
