@@ -27,6 +27,8 @@ class StudentView(ListCreateAPIView):
         company=company.title()
         skill_set=Skills.objects.all()
         sk=[]
+       
+
         for skill_ in skill_set:
             sk.append(skill_.skill)
         for skil in skills:
@@ -49,6 +51,30 @@ class StudentView(ListCreateAPIView):
         course=user.course.upper()
         branch=user.branch.upper()
         serializer.save(student=user,full_name=user.full_name,branch=branch,roll_number=user.roll_number,job_title=job_title,course=course,company=company)
+        serializer=YearAnalysisSerializer
+        year=[]
+        year_set=Year.objects.all()
+        queryset=Student_Form.objects.all()
+        ski=[]
+        today=date.today()
+        years=str(today)
+        year_=years[0:4]
+        for years in year_set:
+            ski.append(years.year)
+        if year_ not in ski:
+            data={
+                    "year":year_,
+                    "stu_no":1
+                }
+            year_set=YearAnalysisSerializer(data=data)
+            if year_set.is_valid():
+                year_set.save()
+        else:
+            s=Year.objects.get(year=year_)
+            s.stu_no+=1
+            s.save()
+            
+
     def get_queryset(self):
         pk=self.kwargs.get('pk')
         user=User.objects.get(id=pk)
@@ -96,6 +122,7 @@ class SearchJobView(ListCreateAPIView):
 class AdminView(ListCreateAPIView):
     serializer_class=AdminSerializer
     queryset=Student_Form.objects.all()
+  
     try:
         for user in queryset:
             if user.Days_till>1460:
@@ -166,4 +193,11 @@ def gpt3(request,text):
     )
     image_url = response['data'][0]['url']
     return Response({"About":a,"image_url":image_url})
+class YearAnalysisView(ListCreateAPIView):
+    serializer_class=YearAnalysisSerializer
+    queryset=Year.objects.all()
+    def get_queryset(self):
+        return self.queryset.filter()
+    
+
     

@@ -11,6 +11,7 @@ urlpatterns = [
     path('admin_view_company/<str:company>',AdminView_Company.as_view()),
     path('admin_view_skill/<str:skill>',AdminView_Skill),
     path('skill_view/',SkillView.as_view()),
+    path('year_view/',YearAnalysisView.as_view()),
     path('response/<str:text>',gpt3)
 ]
 

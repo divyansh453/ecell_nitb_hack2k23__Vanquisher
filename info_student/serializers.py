@@ -24,5 +24,9 @@ class SkillSerializer(serializers.ModelSerializer):
     class Meta:
         model=Skills
         fields="__all__"
+class YearAnalysisSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Year
+        fields="__all__"
 
 

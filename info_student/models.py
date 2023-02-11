@@ -35,6 +35,11 @@ class Student_Form(models.Model):
         days_till=days_till[0]
         days_till=int(days_till)
         return days_till
+    @property
+    def year_(self):
+        day_now=str(self.date)
+        day_now=day_now[0:4]
+        return day_now
     
 class Company_User(models.Model):  
     user=models.ForeignKey(User,on_delete=models.CASCADE)
@@ -61,11 +66,12 @@ class Skills(models.Model):
     rate=models.IntegerField()
     def __str__(self):
         return self.skill+" "+str(self.rate)
-    #@property
-    # def skill(self):
-    #     return self.skill
-
-
-
-
-
+    class Meta:
+        ordering=['-rate']
+class Year(models.Model):
+    year=models.CharField(max_length=4)
+    stu_no=models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(1000)],null=True)
+    def __str__(self):
+        return self.year+" "+str(self.stu_no)
+    class Meta:
+        ordering=['-stu_no']
