@@ -44,12 +44,21 @@ With resume shortlisting.
 
 ![Screenshot (41)](https://user-images.githubusercontent.com/104627870/218319276-ac4bab95-eb6a-48ac-a32f-f0a54eb0adb3.png)
 
-## 
+## Trending Skills Based on Students Skills
 
 ![Screenshot (38)](https://user-images.githubusercontent.com/104627870/218319180-77c68b00-aff1-4753-b95a-c1d0df2a87ac.png)
+
+## Placed VS Unplaced Graph
+
 ![Screenshot (39)](https://user-images.githubusercontent.com/104627870/218319226-0c637b62-13f5-405e-a25c-76c58df68129.png)
+
+## Live Resume Building
+
 ![Screenshot (40)](https://user-images.githubusercontent.com/104627870/218319251-d8d7193c-9c6b-48e6-9f90-7c7caf624211.png)
 
+## Skill Based Job Recommendation Sytem
+
+![IMG-20230212-WA0025](https://user-images.githubusercontent.com/104627870/218319962-c6408edc-e397-40c9-afff-530ceadd51e4.jpg)
 
 
 - Table of Database 
