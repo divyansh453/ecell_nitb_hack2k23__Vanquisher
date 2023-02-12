@@ -4,6 +4,7 @@ import { placement_record } from './Home';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import RecordsData from './RecordsData';
+import Navbar from './Navbar';
 import axios from 'axios';
 
 

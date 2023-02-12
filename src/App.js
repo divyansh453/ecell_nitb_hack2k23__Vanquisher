@@ -11,6 +11,9 @@ import Resume from './components/Resume';
 import { Route,Routes } from "react-router-dom";
 import Login from './components/Login';
 import Corporation from './components/Corporation';
+import AdminHome from './components/AdminHome';
+import AdminLogin from './components/AdminLogin';
+import AdminMail from './components/AdminMail';
 
 function App() {
   return (
@@ -20,13 +23,15 @@ function App() {
         
         <Route path="/" element={<Login/>}/>
         <Route path="/home" element={<Home/>}/>
-        <Route path="/admin" element={<Admin/>}/>
+        <Route path="/admin" element={<AdminLogin/>}/>
+        <Route path="/admin-home" element={<AdminHome/>}/>
         <Route path="/profile" element={<Myprofile/>}/>
         <Route path="/seekjob" element={<Seek/>}/>
         <Route path="/statistics" element={<Statistics/>}/>
         <Route path="/records" element={<Records/>}/>
         <Route path="/resume" element={<Resume/>}/>
         <Route path="/corporation" element={<Corporation/>}/>
+        <Route path="/admin-mail" element={<AdminMail/>}/>
       </Routes>
     </div>
   );

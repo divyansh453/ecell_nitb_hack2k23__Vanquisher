@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Navigate, NavLink, useNavigate } from 'react-router-dom';
-import "../styles/Login.css";
+import "../styles/AdminLogin.css";
 // import HashLoader from "react-spinners/HashLoader";
 
 export let profile_data={
@@ -12,7 +12,7 @@ export let profile_data={
     age:"",
 }
 
-const Login = () => {
+const AdminLogin = () => {
     const initialvalues={
         roll_number:"",
         password:""
@@ -75,7 +75,7 @@ const Login = () => {
                 localStorage.setItem("profile_cgpa",res.data.profile_data.cgpa);
                 localStorage.setItem("profile_course",res.data.profile_data.course);
                 // setLoading(false);
-                navigate("/home");
+                navigate("/admin-home");
             }).catch((err)=>{
                 console.log(err);
                 // setLoading(false);
@@ -106,10 +106,10 @@ const Login = () => {
                 <p className='loginerror'>{formerror.password}</p>
                 <input type="submit" value="LogIn" className='logInsubmit'/>
             </form>
-            {/* <NavLink to="/forgetPassword" className="forgetPassword">Forgotten Password?</NavLink> */}
-            {/* <h4>Not Have An Account?</h4>
+            <NavLink to="/forgetPassword" className="forgetPassword">Forgotten Password?</NavLink>
+            <h4>Not Have An Account?</h4>
             
-            <button  className="register" onClick={userRegister}>Register</button> */}
+            <button  className="register" onClick={userRegister}>Register</button>
             
         </div>
         {/* <div className={iscredentials?"successfulLogin":"hide"}>
@@ -120,4 +120,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default AdminLogin

@@ -1,10 +1,9 @@
 import React,{useState,useRef} from 'react';
 import "../styles/Myprofile.css";
 import axios from 'axios';
+import Navbar from './Navbar';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
    
 let skills_sec=[];
 const top100Films=[
@@ -42,20 +41,22 @@ const Myprofile = () => {
 
     const submitHandler=(e)=>{
       e.preventDefault();
-        // axios.post("https://ecellnitbhack2k23vanquisher-production.up.railway.app/info_student/student_form/2",{
-        //   student:2,
-        //   skills:skills_sec,
-        //   employment_type:formvalues.employment,
-        //   package:formvalues.package,
-        //   company:formvalues.company,
-        //   resources:formvalues.resource,
-        //   placement:formvalues.placement,
-        //   cgpa:formvalues.cgpa,
-        // }).then((res)=>{
-        //   console.log(res)
-        // }).catch((err)=>{
-        //   console.log(err)
-        // })
+        axios.post(`https://ecellnitbhack2k23vanquisher-production.up.railway.app/info_student/student_form/${localStorage.getItem("profile_id")}`,{
+          student:localStorage.getItem("profile_id"),
+          skills:skills_sec,
+          employment_type:formvalues.employment,
+          job_title:formvalues.job_title,
+          package:formvalues.package,
+          company:formvalues.company,
+          resources:formvalues.resource,
+          placement:formvalues.placement,
+          course:"abcd",
+          cgpa:formvalues.cgpa,
+        }).then((res)=>{
+          console.log(res)
+        }).catch((err)=>{
+          console.log(err)
+        })
         console.log(formvalues);
     }
 
@@ -68,16 +69,17 @@ const Myprofile = () => {
     }
   return (
     <div className='myprofile'>
-        <form onSubmit={submitHandler} className="profile_form">
+        <Navbar/>
+        <form className="profile_form">
           <div className='profilefirst'>
             <div className='inputcontrol'>
               <label>Name</label>
-              <input type="text" name='name' value="" onChange={userHandler} className="inputset"/>
+              <input type="text" name='name' value={localStorage.getItem('profile_name')} onChange={userHandler} className="inputset"/>
             </div>
 
             <div className='inputcontrol'>
               <label>University Roll No.</label>
-              <input type="text" name='roll' value="" onChange={userHandler} className="inputset"/>
+              <input type="text" name='roll' value={localStorage.getItem('profile_roll')} onChange={userHandler} className="inputset"/>
             </div>
 
 
@@ -123,7 +125,7 @@ const Myprofile = () => {
 
             <div className='inputcontrol'>
               <label>CGPA</label>
-              <input type="text" name='cgpa' value={formvalues.cgpa} onChange={userHandler} className="inputset"/>
+              <input type="text" name='cgpa' value={localStorage.getItem("profile_cgpa")} onChange={userHandler} className="inputset"/>
             </div>
 
             <div className='inputcontrol'>
@@ -143,13 +145,14 @@ const Myprofile = () => {
                     </textarea>
             </div> */}
 
-           <Stack spacing={0} direction="row">
-              <Button variant="contained" fullWidth className='profile_submit'>Seek Job</Button>
+           <Stack spacing={0} direction="row" onClick={submitHandler}>
+              <Button variant="contained" fullWidth className='profile_submit'>SEND</Button>
            </Stack>
             </div>
             
         </form>
     </div>
+    
   )
 }
 

@@ -1,5 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@800;400&display=swap');
 .login{
-    /* background-image: url("./images/bg.jpg"); */
+    background-image: url("../images/bgMANIT.svg");
     background-size: cover;
     width:100vw;
     height: 100vh;
@@ -8,7 +9,6 @@
     align-items: center;
     justify-content: center;
     overflow-x: hidden;
-    /* margin-top: -1rem; */
 }
 .loginControls{
     display: flex;
@@ -18,10 +18,13 @@
     background-color:white;
     border-radius: 5px;
 }
-.login h1{
-    color:#4054B2;
+.login h2{
     font-size: 3rem;
-    margin:1rem 0 0 0;
+    
+    margin:0.5rem 0;
+   
+
+
 }
 .loginPage{
     display: flex;
@@ -31,10 +34,19 @@
     width:20rem;
     height: auto;
     padding: 1rem 1rem;
-    
+    box-shadow: 1px 1px 5px grey;
 }
 .loginPage input{
     width:95%;
+    padding: 0.7rem 0.5rem;
+    border:0.5px solid grey;
+    outline:none;
+    margin:0.2rem;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+}
+.select_employee{
+    width:100%;
     padding: 0.7rem 0.5rem;
     border:0.5px solid grey;
     outline:none;
@@ -52,6 +64,10 @@
     font-size: 0.8rem;
     display: flex;
     align-self: flex-start;
+}
+.label_login{
+    display: flex;
+    align-self: self-start;
 }
 .register{
     width: 50%;

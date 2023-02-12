@@ -2,11 +2,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
+    
 }
 .piechart_sec{
     padding:1rem;
-    width: 50%;
+    width: 40%;
+    
     
 }
 .piechart_sec p{

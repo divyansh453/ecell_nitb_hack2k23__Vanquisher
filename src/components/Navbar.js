@@ -11,11 +11,11 @@ const Navbar = () => {
   }
   return (
     <div className='navbar'>
-        <h2>Logo</h2>
+        <h2 style={{color:"blue"}}>Carrersome</h2>
         <ul>
             <Link to="/profile" className='navlist'>Dashboard</Link>
             <Link to="/statistics" className='navlist'>Statistics</Link>
-            <Stack spacing={2} direction="row"  className='navlist'>
+            <Stack spacing={0} direction="row"  className='navlist'>
               <Button variant="contained" onClick={movetojob}>Seek Job</Button>
            </Stack>
         </ul>

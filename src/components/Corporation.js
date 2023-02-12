@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Navigate, NavLink, useNavigate } from 'react-router-dom';
-import "../styles/Login.css";
+import "../styles/Corporation.css";
+import Navbar from './Navbar';
 
 
 // export let profile_data={
@@ -98,6 +99,7 @@ const Login = () => {
 
     return(
         <>
+        {/* <Navbar/> */}
        
     <div className='login'>
     <h1>Send Emails in One Click!</h1>

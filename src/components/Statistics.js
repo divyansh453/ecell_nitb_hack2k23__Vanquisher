@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { Bar } from 'react-chartjs-2'
 import { Chart,LinearScale, CategoryScale,BarElement ,legend, Title, Legend } from 'chart.js';
 import axios from 'axios';
+import Navbar from './Navbar';
 
 
 let myData=[];
@@ -89,7 +90,7 @@ const Statistics = () => {
 
 
   return (
-    <>
+  <>
     <h2 style={{textAlign:"center",fontSize:"2rem",marginBottom:"-2rem"}}>Pie Chart (Skills Based)</h2>
     <div className='piechart'>
       
@@ -101,21 +102,13 @@ const Statistics = () => {
         />   
       </div>
 
-    <div className='piechart_sec'>
-        <p>The pie chart above depicts the distribution of votes for a fictional election for a small city</p>
-        <p>Pie charts have a fairly narrow use-case that is encapsulated particularly well by its definition.</p>
-        <p>The values that comprise a whole and the categories that divide the whole generally come in two major varieties.</p>
-        <p> Visualization tools will usually start from the right or from the top. While starting from the right has a mathematical basis regarding conventions on measuring angles, starting from the top feels more intuitive, since it matches how we read from top to bottom, and how we think about progression of time on a clock or watch face.</p>
-        <p>Pie charts with a large number of slices can be difficult to read. It can be difficult to see the smallest slices, and it can be difficult to choose enough colors to make all of the slices distinct.</p>
-        <p>Reading a pie chart accurately requires that the slices’ areas, arc lengths, and angles all point to an accurate representation of the data. While avoiding 3-d effects is a good idea for any plot, it is especially important for pie charts. Squashing or stretching the circle or adding unnecessary depth can easily distort how large each slice compares to the whole.</p>
-    </div>
+   
     </div>
     <h2 style={{textAlign:"center",fontSize:"2rem",marginBottom:"2rem"}}>Graphical Representation(Placed Vs Unplaced)</h2>
     <div style={{width:"70%",margin:"auto"}}>
       <Bar options={options} data={data}/>
     </div>
     </>
-    
   )
 }
 
