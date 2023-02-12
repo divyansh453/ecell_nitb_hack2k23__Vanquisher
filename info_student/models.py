@@ -82,3 +82,8 @@ class Email_to_Companies(models.Model):
 
     def __str__(self):
         return self.company+"'s Mail "
+class Resume(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    resume=models.FileField(blank=True,null=True)
+    def __str__(self):
+        return str(self.user)+"'s Resume"

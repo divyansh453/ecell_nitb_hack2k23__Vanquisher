@@ -6,5 +6,6 @@ admin.site.register(SearchJob)
 admin.site.register(Skills)
 admin.site.register(Year)
 admin.site.register(Email_to_Companies)
+admin.site.register(Resume)
 
 # Register your models here.

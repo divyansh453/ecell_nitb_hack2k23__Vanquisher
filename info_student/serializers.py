@@ -32,5 +32,9 @@ class CompanyEmailSerializer(serializers.ModelSerializer):
     class Meta:
         model=Email_to_Companies
         fields="__all__"
+class ResumeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Resume
+        fields="__all__"
 
 

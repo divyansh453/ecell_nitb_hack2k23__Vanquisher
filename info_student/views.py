@@ -9,6 +9,7 @@ from rest_framework import status
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi 
 from rest_framework.generics import ListCreateAPIView
+from rest_framework.parsers import MultiPartParser,FormParser
 from .serializers import *
 from .models import *
 from django.conf import settings
@@ -258,7 +259,12 @@ class CompanyEmailService(ListCreateAPIView):
                 'email_subject': 'Request for Jobs','user_name':user.full_name}
             Utill.send_email(data)
             serializer.save()
-
+class ResumeView(ListCreateAPIView):
+    serializer_class=ResumeSerializer
+    queryset=Resume.objects.all()
+    parser_classes=(MultiPartParser,FormParser)
+    def perform_create(self,serializer):
+        serializer.save()
 
 
     
