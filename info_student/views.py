@@ -160,8 +160,13 @@ class AdminView(ListCreateAPIView):
     def get_queryset(self):
         course=self.kwargs.get('course')
         branch=self.kwargs.get('branch')
-        if course and branch:
+        if course==" " and branch==" ":
+            return self.queryset.filter()
+        elif course and branch==" ":
             course=course.upper()
+            return self.queryset.filter(course=course)
+        else:
+            course=course.upper()   
             branch=branch.upper()
             return self.queryset.filter(course=course,branch=branch)
 class AdminView_all(ListCreateAPIView):
