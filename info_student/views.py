@@ -268,6 +268,7 @@ class ResumeView(ListCreateAPIView):
     parser_classes=(MultiPartParser,FormParser)
     def perform_create(self,serializer):
         user=self.kwargs.get("pk")
+        user=User.objects.get(user=user)
         serializer.save(user=user)
         print(user)
         res=Resume.objects.get(user=user)
