@@ -85,9 +85,11 @@ With resume shortlisting.
   
  - Placement Records and Trending Skills APIs
  
-   [RecordsAccToFilters](https://ecellnitbhack2k23vanquisher-production.up.railway.app/info_student/admin_view/b.tech/cse)
-  
-   [PlacedVsUnplaced]()
+   [RecordsAccToSkills](https://ecellnitbhack2k23vanquisher-production.up.railway.app/info_student/admin_view_skill/HTML)
+   
+   [RecordsAccToPlacement](https://ecellnitbhack2k23vanquisher-production.up.railway.app/info_student/admin_view_placement/oncampus)
+   
+   [RecordsAccToEmplyment](https://ecellnitbhack2k23vanquisher-production.up.railway.app/info_student/admin_view_employment/Internship)
   
    [TrendingSkills](https://ecellnitbhack2k23vanquisher-production.up.railway.app/info_student/skill_view/)
   
