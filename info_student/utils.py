@@ -9,20 +9,41 @@ from datetime import date
 from account.models import User
 from .models import *
 import os
-class Util:
+class Util1:
     @staticmethod
     def send_email(data):
-        print(data['to_email'])
-        for email_ in data['to_email']:
-            email=EmailMessage(subject=data['email_subject'],body=data['email_body'],to=(email_,))
+        for email_ in data['user_email']:
+            html_part = MIMEMultipart(_subtype='related')
+            email=EmailMessage(subject=data['email_subject'],to=(data['to_email'],))
             user=User.objects.get(email=email_)
             res=Resume.objects.get(user=user)
             url=b="./media/"+str(res.resume)
-            print(url)
             attachment = open(url, 'rb')
+            a='''<html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <div style="border:2px solid black,padding:5px">
+    <h1>This Candidate is elligible for Job</h1>
+    <p
+    <h3>Details of Applicant:</h3>
+    <p>Name:'''+user.full_name+'''</p>
+    <p>Email:'''+user.email+'''</p>
+    <p>Contact no:'''+user.mobile_number+'''</p>
+    <p>CGPA:'''+str(user.cgpa)+'''</p>
+    <p>Thank you for considering MANIT for your recruitment needs. We hope to welcome you in the near future.</p>
+    <p>Sincerely,</p>
+    <p>Placement Cell,ABC College</p>
+    <br>
+  </div>
+    Resume of '''+user.full_name+'''
+</html>'''
+            body = MIMEText(a, _subtype='html')
+            html_part.attach(body)
+            email.attach(html_part)
             email.attach(url,attachment.read(),'application/pdf')
             email.send()
-emails=[]
+
 class Utill:
     @staticmethod
     def send_email(data): 
@@ -45,6 +66,14 @@ class Utill:
     <p>Placement Cell, MANIT Bhopal</p>
   </body>
 </html>'''
+        body = MIMEText(a, _subtype='html')
+        html_part.attach(body)
         msg = EmailMessage(subject=data['email_subject'],to=(data['to_email'],))
         msg.attach(html_part)
         msg.send()
+from django.core.mail import EmailMessage
+class Util:
+    @staticmethod
+    def send_email(data):
+        email=EmailMessage(subject=data['email_subject'],body=data['email_body'],to=(data['to_email'],))
+        email.send()

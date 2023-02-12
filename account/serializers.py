@@ -66,7 +66,7 @@ class LoginSerializer(serializers.ModelSerializer):
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model=User
-        fields=['id','roll_number','branch','mobile_number','email','full_name','age','mobile_number','cgpa']
+        fields=['id','roll_number','branch','mobile_number','email','full_name','age','mobile_number','cgpa','course']
 
 class LogoutSerializer(serializers.Serializer):
     refresh = serializers.CharField()

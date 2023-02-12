@@ -16,7 +16,7 @@ from django.conf import settings
 from django.utils.translation import gettext_lazy 
 import json 
 from account.models import User
-from .utils import Util,Utill
+from .utils import Util,Utill,Util1
 class StudentView(ListCreateAPIView):
     serializer_class=StudentSerializer
     queryset=Student_Form.objects.all()
@@ -53,6 +53,7 @@ class StudentView(ListCreateAPIView):
         user=User.objects.get(id=pk)
         course=user.course.upper()
         branch=user.branch.upper()
+        cgpa=user.cgpa
         placement=placement.upper()
         employment=employment.title()
         serializer.save(student=user,full_name=user.full_name,branch=branch,roll_number=user.roll_number,job_title=job_title,course=course,company=company,placement=placement,employment_type=employment,cgpa=cgpa)
@@ -105,9 +106,9 @@ class CompanyView(ListCreateAPIView):
         email_body = 'Hi ' + \
             '\nThis candidate is elligible for the job offred by you.\nDetails of User:\n'+\
                 'Name:'+'\nPhone_number:'+'\nEmail:\n'
-        data = {'email_body': email_body, 'to_email':email_of_all,
+        data = {'email_body': email_body, 'to_email':user.email,"user_email":email_of_all,
                 'email_subject': 'Elligible Candidate'}
-        Util.send_email(data)
+        Util1.send_email(data)
         serializer.save(user=user)
     def get_queryset(self):
         pk=self.kwargs.get("pk")
@@ -143,7 +144,7 @@ class SearchJobView(ListCreateAPIView):
             '\nYour Candidature has been considered by these companies for the post of '+job_title+'\nCompanies:\n'+name_of_all
             data = {'email_body': email_body, 'to_email': user.email,
                 'email_subject': 'Elligible Candidate'}
-            Util.send_email(data)
+            Util1.send_email(data)
         serializer.save(user=user,full_name=user.full_name,email=user.email,job_title=job,cgpa=cgpa)
     def get_queryset(self):
         pk=self.kwargs.get('pk')
