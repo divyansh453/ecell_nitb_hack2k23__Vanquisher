@@ -13,7 +13,8 @@ class Util:
         email=EmailMessage(subject=data['email_subject'],body=data['email_body'],to=(data['to_email'],))
         url=data['url']
         print(url)
-        email.attach(url,'Application/pdf')
+        attachment = open(url, 'rb')
+        email.attach(url,attachment.read(),'application/pdf')
         email.send()
 emails=[]
 class Utill:

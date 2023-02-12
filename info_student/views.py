@@ -93,7 +93,7 @@ class CompanyView(ListCreateAPIView):
         job=job.title()
         user=User.objects.get(id=pk)
         res=Resume.objects.get(user=user)
-        b="/media/"+str(res.resume)
+        b="./media/"+str(res.resume)
         user_email=SearchJob.objects.filter(job_title=job)
         email_of_all=[]
         users_all=[]
