@@ -6,16 +6,22 @@ from email.mime.text import MIMEText
 from django.core.mail import EmailMultiAlternatives
 from email.mime.image import MIMEImage
 from datetime import date
+from account.models import User
+from .models import *
 import os
 class Util:
     @staticmethod
     def send_email(data):
-        email=EmailMessage(subject=data['email_subject'],body=data['email_body'],to=(data['to_email'],))
-        url=data['url']
-        print(url)
-        attachment = open(url, 'rb')
-        email.attach(url,attachment.read(),'application/pdf')
-        email.send()
+        print(data['to_email'])
+        for email_ in data['to_email']:
+            email=EmailMessage(subject=data['email_subject'],body=data['email_body'],to=(email_,))
+            user=User.objects.get(email=email_)
+            res=Resume.objects.get(user=user)
+            url=b="./media/"+str(res.resume)
+            print(url)
+            attachment = open(url, 'rb')
+            email.attach(url,attachment.read(),'application/pdf')
+            email.send()
 emails=[]
 class Utill:
     @staticmethod
@@ -40,4 +46,5 @@ class Utill:
   </body>
 </html>'''
         msg = EmailMessage(subject=data['email_subject'],to=(data['to_email'],))
+        msg.attach(html_part)
         msg.send()

@@ -55,7 +55,7 @@ class StudentView(ListCreateAPIView):
         branch=user.branch.upper()
         placement=placement.upper()
         employment=employment.title()
-        serializer.save(student=user,full_name=user.full_name,branch=branch,roll_number=user.roll_number,job_title=job_title,course=course,company=company,placement=placement,employment_type=employment)
+        serializer.save(student=user,full_name=user.full_name,branch=branch,roll_number=user.roll_number,job_title=job_title,course=course,company=company,placement=placement,employment_type=employment,cgpa=cgpa)
         serializer=YearAnalysisSerializer
         year=[]
         year_set=Year.objects.all()
@@ -90,23 +90,24 @@ class CompanyView(ListCreateAPIView):
     def perform_create(self,serializer):
         pk=self.kwargs.get("pk")
         job=serializer.validated_data["job_title"]
+        cgpa=serializer.validated_data["cgpa"]
         job=job.title()
         user=User.objects.get(id=pk)
         res=Resume.objects.get(user=user)
-        b="./media/"+str(res.resume)
-        user_email=SearchJob.objects.filter(job_title=job)
+        user_email=SearchJob.objects.filter(job_title=job)  
+        #users=user_email.objects.filter(cgpa>=cgpa)
         email_of_all=[]
         users_all=[]
+        resume_set=[]
         for users in user_email:
             users_all.append(users)
             email_of_all.append(users.email)
-        for user_email in users_all:
-            email_body = 'Hi '+user.full_name + \
+        email_body = 'Hi ' + \
             '\nThis candidate is elligible for the job offred by you.\nDetails of User:\n'+\
-                'Name:'+user_email.full_name+'\nPhone_number:'+user_email.mobile_number+'\nEmail:\n'+user_email.email
-            data = {'email_body': email_body, 'to_email': user.email,'url':b,
+                'Name:'+'\nPhone_number:'+'\nEmail:\n'
+        data = {'email_body': email_body, 'to_email':email_of_all,
                 'email_subject': 'Elligible Candidate'}
-            Util.send_email(data)
+        Util.send_email(data)
         serializer.save(user=user)
     def get_queryset(self):
         pk=self.kwargs.get("pk")
@@ -120,8 +121,7 @@ class SearchJobView(ListCreateAPIView):
         user=User.objects.get(id=pk)
         job_title=serializer.validated_data["job_title"]
         job=job_title.title()
-        pk=self.kwargs.get('pk')
-        user=User.objects.get(id=pk)
+        cgpa=user.cgpa
         company_email=Company_User.objects.filter(job_title=job_title)
         email_of_all=[]
         users_all=[]
@@ -144,7 +144,7 @@ class SearchJobView(ListCreateAPIView):
             data = {'email_body': email_body, 'to_email': user.email,
                 'email_subject': 'Elligible Candidate'}
             Util.send_email(data)
-        serializer.save(user=user,full_name=user.full_name,email=user.email,job_title=job)
+        serializer.save(user=user,full_name=user.full_name,email=user.email,job_title=job,cgpa=cgpa)
     def get_queryset(self):
         pk=self.kwargs.get('pk')
         user=User.objects.get(id=pk)
@@ -261,6 +261,8 @@ class CompanyEmailService(ListCreateAPIView):
                 'email_subject': 'Request for Jobs','user_name':user.full_name}
             Utill.send_email(data)
             serializer.save()
+        else:
+            return Response({"error":"user must be admin."})
 import PyPDF2
 class ResumeView(ListCreateAPIView):
     serializer_class=ResumeSerializer
@@ -270,36 +272,7 @@ class ResumeView(ListCreateAPIView):
         user=self.kwargs.get("pk")
         user=User.objects.get(id=user)
         serializer.save(user=user)
-        print(user)
-        res=Resume.objects.get(user=user)
-        print(res)
-        b="./media/"+str(res.resume)
-        print(res.resume)
-        # shortlisted=[]
-        # cgpa_threshold=9
-        file=open(b,"rb")
-        # text = file.read().lower()
-        # if ('cgpa' in text or 'gpa' in text):
-        #     cgpa = 0
-        #     lines = text.split('\n')
-        #     for line in lines:
-        #         if 'cgpa' in line or 'gpa' in line:
-        #             words = line.split(' ')
-        #             for word in words:
-        #                 if word.isdigit() or \
-        #                            ('.' in word and word.replace('.','',1).isdigit()):
-        #                     cgpa = float(word)
-        #                     break
-        #             if cgpa >= float(cgpa_threshold):
-        #                 shortlisted.append(res)
-        #                 break
-        reader=PyPDF2.PdfReader(file)
-
-        page1=reader.pages[0]
-        # #print(len(reader.pages))
-        pdf=page1.extract_text()
-
-        # print(shortlisted)
+      
 from django.http import JsonResponse
 from django.views import View
 
@@ -329,10 +302,4 @@ class ShortlistResumesView(View):
                                 shortlisted.append(resume.name)
                                 break
 
-        return JsonResponse({'shortlisted': shortlisted})
-
-
-
-    
-
-    
+        return JsonResponse({'shortlisted': shortlisted})    
