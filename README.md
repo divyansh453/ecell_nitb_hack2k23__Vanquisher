@@ -1,5 +1,6 @@
 # ecell_nitb_hack2k23__Vanquisher
 # Project Name
+<img src="/matiassingers/awesome-readme/raw/master/icon.png" align="right" style="max-width: 100%;">
 
 A brief and captivating description of the project, including its purpose and the problem it solves.
 
