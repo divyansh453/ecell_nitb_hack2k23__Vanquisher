@@ -1,8 +1,8 @@
 # ecell_nitb_hack2k23__Vanquisher
 ![main-removebg-preview](https://user-images.githubusercontent.com/97653340/213859431-eb9a28a5-6d39-4d92-87f7-a25143c4cb6a.jpg)
 
-ReactJS Basic Resume Generator which will generate customized Resume in few minutes on your requirements.
-Live resume editor.
+A Revolutionized Campus Placement Platform with Optimized Solution - Automated Data Management, Trend-Driven Insights, and Effortless Recruitment Coordination.
+With resume shortlisting.
 
 ## Features
 - User Can easily update the resume
