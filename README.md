@@ -68,9 +68,7 @@ With resume shortlisting.
 
 
 
-## Deployment
- Deployed on Netlify-
- [Netlify Link](https://carrersome.netlify.app/)
+
 
 
 ## API Links 🔗
