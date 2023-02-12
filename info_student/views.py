@@ -259,12 +259,27 @@ class CompanyEmailService(ListCreateAPIView):
                 'email_subject': 'Request for Jobs','user_name':user.full_name}
             Utill.send_email(data)
             serializer.save()
+import PyPDF2
 class ResumeView(ListCreateAPIView):
     serializer_class=ResumeSerializer
     queryset=Resume.objects.all()
     parser_classes=(MultiPartParser,FormParser)
     def perform_create(self,serializer):
+        user=self.kwargs.get("pk")
         serializer.save()
+        print(user)
+        res=Resume.objects.get(user=user)
+        print(res)
+        b="./media/"+str(res.resume)
+        print(res.resume)
+        file=open(b,"rb")
+        reader=PyPDF2.PdfReader(file)
+
+        page1=reader.pages[0]
+        #print(len(reader.pages))
+        pdf=page1.extract_text()
+        print(pdf)
+
 
 
     
