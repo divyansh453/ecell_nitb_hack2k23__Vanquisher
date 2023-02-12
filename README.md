@@ -56,7 +56,7 @@ With resume shortlisting.
 
 ![IMG-20230212-WA0025](https://user-images.githubusercontent.com/104627870/218319962-c6408edc-e397-40c9-afff-530ceadd51e4.jpg)
 
-## Mail
+## Invitation Mail
 
 ![Screenshot (42)](https://user-images.githubusercontent.com/104627870/218320165-58c1ff61-78e3-49dd-be3f-014f8e531d92.png)
 
