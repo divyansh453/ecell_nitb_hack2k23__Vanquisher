@@ -1,0 +1,14 @@
+.piechart{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.piechart_sec{
+    padding:1rem;
+    width: 50%;
+    
+}
+.piechart_sec p{
+   margin:1rem 0;
+}

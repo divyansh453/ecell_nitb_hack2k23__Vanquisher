@@ -90,14 +90,27 @@ const Statistics = () => {
 
   return (
     <>
-    <div style={{ height: 620}}>
-    <VictoryPie
-    data={smyData}
-    colorScale={["rgba(255, 99, 132, 0.2" , "rgba(255, 206, 86, 0.2" , "rgba(75, 192, 192, 0.2)","rgba(71, 152, 192, 0.2)","rgba(25, 62, 102, 0.2)"]}
-    radius={100}
-    />   
-    </div>
+    <h2 style={{textAlign:"center",fontSize:"2rem",marginBottom:"-2rem"}}>Pie Chart (Skills Based)</h2>
+    <div className='piechart'>
+      
+       <div style={{ height: 620}}>
+         <VictoryPie
+          data={smyData}
+          colorScale={["rgba(255, 99, 132, 0.2" , "rgba(255, 206, 86, 0.2" , "rgba(75, 192, 192, 0.2)","rgba(71, 152, 192, 0.2)","rgba(25, 62, 102, 0.2)"]}
+          radius={100}
+        />   
+      </div>
 
+    <div className='piechart_sec'>
+        <p>The pie chart above depicts the distribution of votes for a fictional election for a small city</p>
+        <p>Pie charts have a fairly narrow use-case that is encapsulated particularly well by its definition.</p>
+        <p>The values that comprise a whole and the categories that divide the whole generally come in two major varieties.</p>
+        <p> Visualization tools will usually start from the right or from the top. While starting from the right has a mathematical basis regarding conventions on measuring angles, starting from the top feels more intuitive, since it matches how we read from top to bottom, and how we think about progression of time on a clock or watch face.</p>
+        <p>Pie charts with a large number of slices can be difficult to read. It can be difficult to see the smallest slices, and it can be difficult to choose enough colors to make all of the slices distinct.</p>
+        <p>Reading a pie chart accurately requires that the slices’ areas, arc lengths, and angles all point to an accurate representation of the data. While avoiding 3-d effects is a good idea for any plot, it is especially important for pie charts. Squashing or stretching the circle or adding unnecessary depth can easily distort how large each slice compares to the whole.</p>
+    </div>
+    </div>
+    <h2 style={{textAlign:"center",fontSize:"2rem",marginBottom:"2rem"}}>Graphical Representation(Placed Vs Unplaced)</h2>
     <div style={{width:"70%",margin:"auto"}}>
       <Bar options={options} data={data}/>
     </div>

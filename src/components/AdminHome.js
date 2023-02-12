@@ -1,5 +1,5 @@
 import React ,{useState}from 'react';
-import "../styles/Home.css";
+import "../styles/AdminHome.css";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
@@ -7,13 +7,14 @@ import Button from '@mui/material/Button';
 import Navbar from './Navbar';
 import block1 from "../images/block1.svg";
 import block2 from "../images/block2.svg";
+import AdminNav from './AdminNav';
 
 export let placement_record=[];
 
-const Home = () => {
+const AdminHome = () => {
     const initialvalues={
-        course:"%20",
-        branch:"%20",
+        course:"",
+        branch:"",
     } 
     const [formvalues,setformvalues]=useState(initialvalues);
     const navigate=useNavigate();
@@ -33,13 +34,11 @@ const Home = () => {
         }).catch((err)=>{
           console.log(err);
         })
-
-      
         
     }
   return (
     <div className='home'>
-      <Navbar/>
+      <AdminNav/>
       <div className='home_section'>
       <h1>Get Detailed Records And Statistics Of Previous Year Placed Students</h1>
       <h2 style={{color:"grey"}}>Easily Refer to Large Number Of Companies</h2>
@@ -53,8 +52,7 @@ const Home = () => {
                 </select>
 
                 <select name="branch"  onChange={userHandler} className="records_selector">
-                    <option value="view_all" disabled selected>All</option>
-                  {/* <option value="CSE(AI&ML)">CSE(AI&ML)</option> */}
+                    <option value="" disabled selected>Branch</option>
                   <option value="CSE">CSE</option>
                   <option value="IT">IT</option>
                 </select>
@@ -72,4 +70,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default AdminHome

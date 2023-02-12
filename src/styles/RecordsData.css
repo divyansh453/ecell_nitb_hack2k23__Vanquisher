@@ -4,19 +4,20 @@
     display: flex;
     flex-direction: column;
     margin:1rem 0;
-    box-shadow: 1px 1px 5px grey;
+    box-shadow: 1px 1px 5px rgb(100, 100, 100);
+    font-weight: 400;
 }
 .records_status{
     display: flex;
     flex-direction: row-reverse;
-    background-color: #1877f2;
-    color: white;
+    background-color: #b8b6b6;
+    /* color: white; */
     padding: 0.5rem;
 }
 .records_details{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color:#1877f2;
-    padding: 0.5rem;
+    /* color:#1877f2; */
+    padding: 1.5rem;
 }

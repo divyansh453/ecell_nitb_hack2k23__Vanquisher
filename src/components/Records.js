@@ -11,6 +11,9 @@ const Records = () => {
 
   const initialvalues={
     company:'',
+    skills:'',
+    employment_type:'',
+    category:'',
   }
  
   const [formvalues,setformvalues]=useState(initialvalues);
@@ -30,6 +33,30 @@ const Records = () => {
       console.log(res)
      }).catch((err)=>{
       console.log(err)
+     })
+
+     axios.get(`https://ecellnitbhack2k23vanquisher-production.up.railway.app/info_student/admin_view_skill/${formvalues.skills}`)
+     .then((res)=>{
+      setupdatedData(res.data)
+      console.log(res)
+     }).catch((err)=>{
+      console.log(err);
+     })
+
+     axios.get(`https://ecellnitbhack2k23vanquisher-production.up.railway.app/info_student/admin_view_placement/${formvalues.employment_type}`)
+     .then((res)=>{
+      setupdatedData(res.data)
+      console.log(res)
+     }).catch((err)=>{
+      console.log(err);
+     })
+
+     axios.get(`https://ecellnitbhack2k23vanquisher-production.up.railway.app/info_student/admin_view_employment/${formvalues.category}`)
+     .then((res)=>{
+      setupdatedData(res.data)
+      console.log(res)
+     }).catch((err)=>{
+      console.log(err);
      })
   }
 //   const filterRide=(e)=>{
@@ -52,14 +79,24 @@ const Records = () => {
         </div>
         <div className='filters'>
         <form className='record-filter'>
-          <div class="employment_type_filter">
+          <div className="employment_type_filter">
             <h4>Filter By CAMPUS</h4>
-            <input type="radio" name="employment_type" value="All" />
+            <input type="radio" name="employment_type" value="All" onClick={userHandler}/>
             <label>All</label><br/> 
-            <input type="radio" name="employment_type" value="Oncampus"/>
+            <input type="radio" name="employment_type" value="oncampus" onClick={userHandler}/>
             <label>OnCampus</label><br/>
-            <input type="radio" name="employment_type" value="Offcampus" />
+            <input type="radio" name="employment_type" value="offcampus" onClick={userHandler}/>
             <label>OffCampus</label><br/>
+          </div>
+
+          <div className="employment_type_filter">
+            <h4>Filter By CATEGORY</h4>
+            <input type="radio" name="category" value="All"  onClick={userHandler}/>
+            <label>All</label><br/> 
+            <input type="radio" name="category" value="Internship" onClick={userHandler}/>
+            <label>Internship</label><br/>
+            <input type="radio" name="category" value="Placement"  onClick={userHandler}/>
+            <label>Placement</label><br/>
           </div>
 
           <div>
@@ -67,21 +104,13 @@ const Records = () => {
             <input type="text" value={formvalues.company} onChange={userHandler} name="company" placeholder='Company Name'/>
           </div>
 
+          <div>
+            <h4>Filter By Skills</h4>
+            <input type="text" value={formvalues.skills} onChange={userHandler} name="skills" placeholder='Skills'/>
+          </div>
 
 
-          {/* <div className='priceFilter'>
-            <h4>Filter by </h4>
-             <input type="radio" value="100" name=""/>
-             <label>Below 100</label><br/>
-             <input type="radio" value="500" name="price"/>
-             <label>Below 500</label><br/>
-             <input type="radio" value="1000" name="price"/>
-             <label>Below 1000</label><br/>
-             <input type="radio" value="5000" name="price"/>
-             <label>Below 5000</label><br/>
-          </div> */}
-
-          <Stack spacing={2} direction="row">
+          <Stack spacing={2} direction="row" className="records_submit">
               <Button variant="contained" onClick={submitHandler}>Apply Filter</Button>
            </Stack>
          
