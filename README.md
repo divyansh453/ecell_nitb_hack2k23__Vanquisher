@@ -9,7 +9,7 @@ With resume shortlisting.
 - **Data Cleaning** which cleans and standardardize the past 4 years placement data
 - **Data Analysis** Gain Actionable Insights into Placement Records, Skills and Outcomes
 - **Recruitment Assistance** Student Eligible for Company Based on Matching CGPA and Provides filtering and searching candidates
-- **Resume Shortlisting** 
+- **Resume Shortlisting** An advance system that shortlists your resume based on CGPA, Package and Job Title 
 - **Designed Formal Mails** invitations are being send by the T/P cell to companies
 - **Skill based Job Recommendation** Get Tailored Job Recommendations Based on Your Rating
 - **Live Resume Building** Build your resume by choosing between our templates
