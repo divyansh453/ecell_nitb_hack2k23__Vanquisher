@@ -48,6 +48,7 @@ class Company_User(models.Model):
     job_title=models.CharField(max_length=100)
     description = models.TextField(max_length=500)
     email=models.EmailField(unique=False)
+    package=models.IntegerField()
     cgpa=models.FloatField(validators=[MinValueValidator(1),MaxValueValidator(10)],null=False)
     def __str__(self):
         return self.company_name+" "+self.employment_type
@@ -59,6 +60,7 @@ class SearchJob(models.Model):
     email=models.EmailField()
     mobile_number=models.CharField(max_length=10)
     address=models.TextField(null=False)
+    package=models.IntegerField()
     cgpa=models.FloatField(validators=[MinValueValidator(1),MaxValueValidator(10)],null=False)
     linkedin=models.CharField(max_length=15,null=True)
     def __str__(self):
