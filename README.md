@@ -5,16 +5,25 @@ A Revolutionized Campus Placement Platform with Optimized Solution - Automated D
 With resume shortlisting.
 
 ## Features
-- User Can easily update the resume
-- Resume Based Compaby Short Listing
-- Choose from a variety if template
-- User Friendly and easy Creation of Resume
+- **Automated Placement Data Entry** which reduces Manual Work for Training & Placement Cells
+- **Data Cleaning** which cleans and standardardize the past 4 years placement data
+- **Data Analysis** Gain Actionable Insights into Placement Records, Skills and Outcomes
+- **Recruitment Assistance** Student Eligible for Company Based on Matching CGPA and Provides filtering and searching candidates
+- **Resume Shortlisting** 
+- **Designed Formal Mails** invitations are being send by the T/P cell to companies
+- **Skill based Job Recommendation** Get Tailored Job Recommendations Based on Your Rating
+
 
 ## Future Scope
-- Based on the data entered build a Portfolio Website
-- Add More Template
-- Add a AI voice assistant with alan AI for Blind and Handicapped People
-- Suggestion on improving Resume and Rating them.
+- Platform for Mock interviews and Job Search Engines
+- Track Your Interview Progress with a Personalized Round Schedule
+- Mentors based on skills, strengths, and aspirations.
+- Chatbot to automate the student and Placement cell conversations
+- Personalised Feeds for the job offers and courses of your choice
+- Automated negotiations and contract management, reducing the time and effort involved in the hiring process
+
+
+
 
 ## Tech Stack 🖥
 *Client:* 
@@ -46,22 +55,31 @@ With resume shortlisting.
 ## API Links 🔗
 - Authentication APIs
 
-  [Login](https://web-production-5470.up.railway.app/accounts/login/)
+  [Login](https://ecellnitbhack2k23vanquisher-production.up.railway.app/accounts/login/)
   
-  [Register](https://web-production-5470.up.railway.app/accounts/register/)
   
-- OfferAJob API last two Parameters of URL are user id and job title of user Respectively
+- To Get a Job APIs
  
-  [OfferAJob](https://web-production-5470.up.railway.app/info_details/company_user/1/Backend%20Developer)
+  [SeekJob](https://ecellnitbhack2k23vanquisher-production.up.railway.app/info_student/job_form/1)
   
-- User Data APIs and Last Parameters are UserIDs
+ - Placement Records and Trending Skills APIs
+ 
 
-  [ProjectsOfuser](https://web-production-5470.up.railway.app/info_details/project/1)
+  [PlacedVsUnplaced]()
   
-  [Skillsofuser](https://web-production-5470.up.railway.app/info_details/skill/1)
+  [TrendingSkills]()
   
-  [Eductaionofuser](https://web-production-5470.up.railway.app/info_details/education/1)
+  [PreviousYearRecords]()
   
-  [AboutofUser](https://web-production-5470.up.railway.app/info_details/about/1)
+  [RecordsAccToFilters]()
   
-  [WorkexpofUser](https://web-production-5470.up.railway.app/info_details/work/1)
+  
+- Emailed Connections APIs
+
+
+  [CompanyToStudent]()
+  
+  [T&PToComapny]()
+  
+  [StudentToCompanyThroughT&P]()
+
