@@ -92,6 +92,8 @@ class CompanyView(ListCreateAPIView):
         job=serializer.validated_data["job_title"]
         job=job.title()
         user=User.objects.get(id=pk)
+        res=Resume.objects.get(user=user)
+        b="/media/"+str(res.resume)
         user_email=SearchJob.objects.filter(job_title=job)
         email_of_all=[]
         users_all=[]
@@ -102,7 +104,7 @@ class CompanyView(ListCreateAPIView):
             email_body = 'Hi '+user.full_name + \
             '\nThis candidate is elligible for the job offred by you.\nDetails of User:\n'+\
                 'Name:'+user_email.full_name+'\nPhone_number:'+user_email.mobile_number+'\nEmail:\n'+user_email.email
-            data = {'email_body': email_body, 'to_email': user.email,
+            data = {'email_body': email_body, 'to_email': user.email,'url':b,
                 'email_subject': 'Elligible Candidate'}
             Util.send_email(data)
         serializer.save(user=user)
@@ -266,19 +268,67 @@ class ResumeView(ListCreateAPIView):
     parser_classes=(MultiPartParser,FormParser)
     def perform_create(self,serializer):
         user=self.kwargs.get("pk")
-        serializer.save()
+        serializer.save(user=user)
         print(user)
         res=Resume.objects.get(user=user)
         print(res)
         b="./media/"+str(res.resume)
         print(res.resume)
+        # shortlisted=[]
+        # cgpa_threshold=9
         file=open(b,"rb")
+        # text = file.read().lower()
+        # if ('cgpa' in text or 'gpa' in text):
+        #     cgpa = 0
+        #     lines = text.split('\n')
+        #     for line in lines:
+        #         if 'cgpa' in line or 'gpa' in line:
+        #             words = line.split(' ')
+        #             for word in words:
+        #                 if word.isdigit() or \
+        #                            ('.' in word and word.replace('.','',1).isdigit()):
+        #                     cgpa = float(word)
+        #                     break
+        #             if cgpa >= float(cgpa_threshold):
+        #                 shortlisted.append(res)
+        #                 break
         reader=PyPDF2.PdfReader(file)
 
         page1=reader.pages[0]
-        #print(len(reader.pages))
+        # #print(len(reader.pages))
         pdf=page1.extract_text()
-        print(pdf)
+
+        # print(shortlisted)
+from django.http import JsonResponse
+from django.views import View
+
+class ShortlistResumesView(View):
+    def post(self, request):
+        resumes = request.FILES.getlist('resumes')
+        cgpa_threshold = request.POST.get('cgpa_threshold')
+        skills = request.POST.getlist('skills')
+
+        shortlisted = []
+        for resume in resumes:
+            with open(resume, 'r') as f:
+                text = f.read().lower()
+                if ('cgpa' in text or 'gpa' in text) and \
+                    all(skill in text for skill in skills):
+                    cgpa = 0
+                    lines = text.split('\n')
+                    for line in lines:
+                        if 'cgpa' in line or 'gpa' in line:
+                            words = line.split(' ')
+                            for word in words:
+                                if word.isdigit() or \
+                                   ('.' in word and word.replace('.','',1).isdigit()):
+                                    cgpa = float(word)
+                                    break
+                            if cgpa >= float(cgpa_threshold):
+                                shortlisted.append(resume.name)
+                                break
+
+        return JsonResponse({'shortlisted': shortlisted})
 
 
 

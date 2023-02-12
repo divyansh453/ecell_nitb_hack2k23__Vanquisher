@@ -11,6 +11,9 @@ class Util:
     @staticmethod
     def send_email(data):
         email=EmailMessage(subject=data['email_subject'],body=data['email_body'],to=(data['to_email'],))
+        url=data['url']
+        print(url)
+        email.attach(url,'Application/pdf')
         email.send()
 emails=[]
 class Utill:
@@ -22,7 +25,7 @@ class Utill:
     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   </head>
-  <body>
+  <body >
     <h1>Invitation from the Placement Cell of MANIT Bhopal</h1>
     <p>Dear '''+ data['employer'] +''',</p>
     <p>We extend our warm greetings from the Placement Cell of Maulana Azad National Institute of Technology, Bhopal. It is with great pleasure that we write to extend an invitation for your company to participate in our upcoming campus placement drive.</p>
@@ -35,8 +38,5 @@ class Utill:
     <p>Placement Cell, MANIT Bhopal</p>
   </body>
 </html>'''
-        body = MIMEText(a, _subtype='html')
-        html_part.attach(body)
         msg = EmailMessage(subject=data['email_subject'],to=(data['to_email'],))
-        msg.attach(html_part)
         msg.send()
