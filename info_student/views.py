@@ -15,7 +15,7 @@ from django.conf import settings
 from django.utils.translation import gettext_lazy 
 import json 
 from account.models import User
-from .utils import Util
+from .utils import Util,Utill
 class StudentView(ListCreateAPIView):
     serializer_class=StudentSerializer
     queryset=Student_Form.objects.all()
@@ -24,6 +24,7 @@ class StudentView(ListCreateAPIView):
         job_title=serializer.validated_data["job_title"]
         skills=serializer.validated_data["skills"]
         company=serializer.validated_data["company"]
+        placement=serializer.validated_data["placement"]
         company=company.title()
         skill_set=Skills.objects.all()
         sk=[]
@@ -50,7 +51,8 @@ class StudentView(ListCreateAPIView):
         user=User.objects.get(id=pk)
         course=user.course.upper()
         branch=user.branch.upper()
-        serializer.save(student=user,full_name=user.full_name,branch=branch,roll_number=user.roll_number,job_title=job_title,course=course,company=company)
+        placement=placement.upper()
+        serializer.save(student=user,full_name=user.full_name,branch=branch,roll_number=user.roll_number,job_title=job_title,course=course,company=company,placement=placement)
         serializer=YearAnalysisSerializer
         year=[]
         year_set=Year.objects.all()
@@ -136,7 +138,6 @@ class SearchJobView(ListCreateAPIView):
             '\nYour Candidature has been considered by these companies for the post of '+job_title+'\nCompanies:\n'+name_of_all
             data = {'email_body': email_body, 'to_email': user.email,
                 'email_subject': 'Elligible Candidate'}
-            print(email_body)
             Util.send_email(data)
         serializer.save(user=user,full_name=user.full_name,email=user.email,job_title=job)
     def get_queryset(self):
@@ -179,6 +180,13 @@ class AdminView_Company(ListCreateAPIView):
         company=self.kwargs.get('company')
         company=company.title()
         return self.queryset.filter(company=company)
+class AdminView_Placement(ListCreateAPIView):
+    serializer_class=AdminSerializer
+    queryset=Student_Form.objects.all()
+    def get_queryset(self):
+        placement=self.kwargs.get('placement')
+        placement=placement.upper()
+        return self.queryset.filter(placement=placement)
 @api_view(['GET'])
 def  AdminView_Skill(request,skill):
     student=Student_Form.objects.all()
@@ -223,6 +231,22 @@ class YearAnalysisView(ListCreateAPIView):
     queryset=Year.objects.all()
     def get_queryset(self):
         return self.queryset.filter()
+class CompanyEmailService(ListCreateAPIView):
+    serializer_class=CompanyEmailSerializer
+    queryset=Email_to_Companies.objects.all()
+    def perform_create(self,serializer):
+        pk=self.kwargs.get("pk")
+        company=serializer.validated_data["company"]
+        email=serializer.validated_data["email"]
+        user=User.objects.get(id=pk)
+        if user.is_admin:
+            data = {'to_email': email,'employer':company,'phone':user.mobile_number,
+                'email_subject': 'Request for Jobs','user_name':user.full_name}
+            Utill.send_email(data)
+            serializer.save()
+
+
+
     
 
     

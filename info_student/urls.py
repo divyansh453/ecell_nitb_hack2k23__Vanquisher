@@ -10,8 +10,10 @@ urlpatterns = [
     path('admin_view_all/',AdminView_all.as_view()),
     path('admin_view_company/<str:company>',AdminView_Company.as_view()),
     path('admin_view_skill/<str:skill>',AdminView_Skill),
+    path('admin_view_placement/<str:placement>',AdminView_Placement.as_view()),
     path('skill_view/',SkillView.as_view()),
     path('year_view/',YearAnalysisView.as_view()),
+    path('admin_view_email/<str:pk>',CompanyEmailService.as_view()),
     path('response/<str:text>',gpt3)
 ]
 

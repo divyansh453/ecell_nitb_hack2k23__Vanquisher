@@ -28,5 +28,9 @@ class YearAnalysisSerializer(serializers.ModelSerializer):
     class Meta:
         model=Year
         fields="__all__"
+class CompanyEmailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Email_to_Companies
+        fields="__all__"
 
 

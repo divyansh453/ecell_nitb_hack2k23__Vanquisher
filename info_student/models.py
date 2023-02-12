@@ -75,3 +75,10 @@ class Year(models.Model):
         return self.year+" "+str(self.stu_no)
     class Meta:
         ordering=['-stu_no']
+class Email_to_Companies(models.Model):
+    admin=models.ForeignKey(User,on_delete=models.CASCADE)
+    email=models.EmailField()
+    company=models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.company+"'s Mail "
