@@ -46,10 +46,7 @@ With resume shortlisting.
 
 ## Trending Skills Based on Students Skills and Placed VS Unplaced
 
-![Screenshot (38)](https://user-images.githubusercontent.com/104627870/218319180-77c68b00-aff1-4753-b95a-c1d0df2a87ac.png)
-
 ![Screenshot (43)](https://user-images.githubusercontent.com/104627870/218320438-3820cc16-6617-42b3-b8ec-c1366ad87940.png)
-
 
 ## Live Resume Building
 
@@ -88,22 +85,22 @@ With resume shortlisting.
   
  - Placement Records and Trending Skills APIs
  
-
+   [RecordsAccToFilters](https://ecellnitbhack2k23vanquisher-production.up.railway.app/info_student/admin_view/b.tech/cse)
+  
    [PlacedVsUnplaced]()
   
-   [TrendingSkills]()
+   [TrendingSkills](https://ecellnitbhack2k23vanquisher-production.up.railway.app/info_student/skill_view/)
   
    [PreviousYearRecords]()
   
-   [RecordsAccToFilters]()
-  
+   
   
 - Emailed Connections APIs
 
 
    [CompanyToStudent](https://ecellnitbhack2k23vanquisher-production.up.railway.app/info_student/company_form/2)
   
-   [T&PToComapny]()
+   [T&PToComapny](https://ecellnitbhack2k23vanquisher-production.up.railway.app/info_student/admin_view_email/1)
   
    [StudentToCompanyThroughT&P]()
 
