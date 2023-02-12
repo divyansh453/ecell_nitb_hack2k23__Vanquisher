@@ -55,8 +55,8 @@ class SearchJob(models.Model):
     full_name=models.CharField(max_length=200,null=False)
     employment_type=models.CharField(max_length=50,null=False)
     job_title=models.CharField(max_length=50)
-    email=models.EmailField(unique=True)
-    mobile_number=models.CharField(max_length=10,unique=True)
+    email=models.EmailField()
+    mobile_number=models.CharField(max_length=10)
     address=models.TextField(null=False)
     linkedin=models.CharField(max_length=15,null=True)
     def __str__(self):

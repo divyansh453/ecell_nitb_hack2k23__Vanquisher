@@ -25,6 +25,7 @@ class StudentView(ListCreateAPIView):
         skills=serializer.validated_data["skills"]
         company=serializer.validated_data["company"]
         placement=serializer.validated_data["placement"]
+        employment=serializer.validated_data["employment_type"]
         company=company.title()
         skill_set=Skills.objects.all()
         sk=[]
@@ -52,7 +53,8 @@ class StudentView(ListCreateAPIView):
         course=user.course.upper()
         branch=user.branch.upper()
         placement=placement.upper()
-        serializer.save(student=user,full_name=user.full_name,branch=branch,roll_number=user.roll_number,job_title=job_title,course=course,company=company,placement=placement)
+        employment=employment.title()
+        serializer.save(student=user,full_name=user.full_name,branch=branch,roll_number=user.roll_number,job_title=job_title,course=course,company=company,placement=placement,employment_type=employment)
         serializer=YearAnalysisSerializer
         year=[]
         year_set=Year.objects.all()
@@ -187,6 +189,13 @@ class AdminView_Placement(ListCreateAPIView):
         placement=self.kwargs.get('placement')
         placement=placement.upper()
         return self.queryset.filter(placement=placement)
+class AdminView_Employment_Type(ListCreateAPIView):
+    serializer_class=AdminSerializer
+    queryset=Student_Form.objects.all()
+    def get_queryset(self):
+        employment=self.kwargs.get('employment')
+        employment=employment.title()
+        return self.queryset.filter(employment_type=employment)
 @api_view(['GET'])
 def  AdminView_Skill(request,skill):
     student=Student_Form.objects.all()
