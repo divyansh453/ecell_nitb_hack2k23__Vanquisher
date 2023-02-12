@@ -15,7 +15,7 @@ class RegisterSerializer(serializers.ModelSerializer):
    
     class Meta:
         model = User
-        fields =['roll_number','mobile_number','email','full_name','course','branch','gender','age','password','password2']
+        fields =['roll_number','mobile_number','email','full_name','course','cgpa','branch','gender','age','password','password2']
         extra_kwargs={
             'password':{'write_only':True}
         }
@@ -66,7 +66,7 @@ class LoginSerializer(serializers.ModelSerializer):
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model=User
-        fields=['id','roll_number','branch','mobile_number','email','full_name','age','mobile_number']
+        fields=['id','roll_number','branch','mobile_number','email','full_name','age','mobile_number','cgpa']
 
 class LogoutSerializer(serializers.Serializer):
     refresh = serializers.CharField()

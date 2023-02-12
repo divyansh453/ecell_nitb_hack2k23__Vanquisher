@@ -10,7 +10,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class UserManager(BaseUserManager):
-    def create_user(self,roll_number,branch,course,email, full_name ,age, gender,mobile_number,password2, password=None):
+    def create_user(self,roll_number,branch,course,email, full_name ,age,cgpa, gender,mobile_number,password2, password=None):
         """
         Creates and saves a User with the given email, name ,tc and password.
         """
@@ -25,6 +25,7 @@ class UserManager(BaseUserManager):
             roll_number=roll_number,
             branch=branch,
             course=course,
+            cgpa=cgpa,
             mobile_number=mobile_number,
             email=self.normalize_email(email),
             full_name=full_name,
@@ -37,7 +38,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self,roll_number,branch,email,course, full_name  ,age, gender,mobile_number,password2,password=None):
+    def create_superuser(self,roll_number,branch,email,course,cgpa, full_name  ,age, gender,mobile_number,password2,password=None):
         """
         Creates and saves a superuser with the given email, name , tc and password.
         """
@@ -51,6 +52,7 @@ class UserManager(BaseUserManager):
             roll_number=roll_number,
             branch=branch,
             course=course,
+            cgpa=cgpa,
             mobile_number=mobile_number,
             password=password,
             email=email,
@@ -77,6 +79,7 @@ class User(AbstractBaseUser):
     is_admin=models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     password2=models.CharField(max_length=40)
+    cgpa=models.FloatField(validators=[MinValueValidator(1),MaxValueValidator(10)],null=False)
 
 
 
@@ -84,7 +87,7 @@ class User(AbstractBaseUser):
 
 
     USERNAME_FIELD='roll_number'
-    REQUIRED_FIELDS= ['email','mobile_number','full_name','branch','course','age','gender','password2']
+    REQUIRED_FIELDS= ['email','mobile_number','full_name','branch','course','age','gender','password2','cgpa']
 
     def __str__(self):
         return self.full_name+  ' , ' +self.roll_number
