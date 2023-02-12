@@ -1,6 +1,6 @@
 # ecell_nitb_hack2k23__Vanquisher
 # Project Name
-<img src="https://img.freepik.com/premium-vector/abstract-colorful-people-logo-isolated-white-background_740796-838.jpg?size=626&ext=jpg&ga=GA1.2.2020872146.1676189334&semt=ais" align="right" style="max-width: 100%;">
+<img src="https://img.freepik.com/premium-vector/abstract-colorful-people-logo-isolated-white-background_740796-838.jpg?size=626&ext=jpg&ga=GA1.2.2020872146.1676189334&semt=ais" align="right" style="max-width: 50%;">
 
 A brief and captivating description of the project, including its purpose and the problem it solves.
 
