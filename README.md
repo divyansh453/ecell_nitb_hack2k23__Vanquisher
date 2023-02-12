@@ -37,9 +37,8 @@ With resume shortlisting.
 
 #### Home Page
  
-![Screenshot (24)]()
-![WhatsApp Im![Screenshot (37)](https://user-images.githubusercontent.com/104627870/218318990-372c36fb-cb15-4919-8dc7-7886204aa490.png)
-age 2023-01-21 at 1 33 40 PM](https://user-images.githubusercontent.com/97653340/213857450-126b556e-c461-48d6-9e75-e911a34e6b97.jpeg)
+
+![Screenshot (37)](https://user-images.githubusercontent.com/104627870/218318990-372c36fb-cb15-4919-8dc7-7886204aa490.png)(https://user-images.githubusercontent.com/97653340/213857450-126b556e-c461-48d6-9e75-e911a34e6b97.jpeg)
 ![Screenshot (25)](https://user-images.githubusercontent.com/104566386/213869972-9dc28e4c-a5c8-4aa6-9ecd-ec7f2e33afdc.png)
 ![WhatsApp Image 2023-01-21 at 1 33 40 PM-2](https://user-images.githubusercontent.com/97653340/213858205-c954f067-1468-450b-ab21-163f4c628286.jpeg)
 - Table of Database 
