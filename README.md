@@ -33,6 +33,7 @@ With resume shortlisting.
 *Server:*
 ![django](https://img.shields.io/badge/Django-DjangoRest%20FrameWork-green)
 ![SQL](https://img.shields.io/badge/SQL-Postgresql-green)
+![python](https://img.shields.io/badge/python-python3.x-green)
 
 ## Screenshots
 
