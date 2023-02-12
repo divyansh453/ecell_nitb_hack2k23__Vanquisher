@@ -29,7 +29,7 @@ With resume shortlisting.
 ## Tech Stack 🖥
 *Client:* 
 ![reactjs](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)&nbsp;
-![chakraui](https://img.shields.io/badge/Chakra--UI-319795?style=for-the-badge&logo=chakra-ui&logoColor=white)&nbsp;
+![materailui](https://img.shields.io/badge/Material--UI-319795?style=for-the-badge&logo=material-ui&logoColor=white)&nbsp;
 *Server:*
 ![django](https://img.shields.io/badge/Django-DjangoRest%20FrameWork-green)
 ![SQL](https://img.shields.io/badge/SQL-Postgresql-green)
