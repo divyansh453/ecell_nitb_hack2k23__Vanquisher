@@ -44,13 +44,12 @@ With resume shortlisting.
 
 ![Screenshot (41)](https://user-images.githubusercontent.com/104627870/218319276-ac4bab95-eb6a-48ac-a32f-f0a54eb0adb3.png)
 
-## Trending Skills Based on Students Skills
+## Trending Skills Based on Students Skills and Placed VS Unplaced
 
 ![Screenshot (38)](https://user-images.githubusercontent.com/104627870/218319180-77c68b00-aff1-4753-b95a-c1d0df2a87ac.png)
 
-## Placed VS Unplaced Graph
+![Screenshot (43)](https://user-images.githubusercontent.com/104627870/218320438-3820cc16-6617-42b3-b8ec-c1366ad87940.png)
 
-![Screenshot (39)](https://user-images.githubusercontent.com/104627870/218319226-0c637b62-13f5-405e-a25c-76c58df68129.png)
 
 ## Live Resume Building
 
@@ -102,7 +101,7 @@ With resume shortlisting.
 - Emailed Connections APIs
 
 
-   [CompanyToStudent]()
+   [CompanyToStudent](https://ecellnitbhack2k23vanquisher-production.up.railway.app/info_student/company_form/2)
   
    [T&PToComapny]()
   
