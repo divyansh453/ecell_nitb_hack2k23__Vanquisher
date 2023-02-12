@@ -6,6 +6,7 @@ With resume shortlisting.
 
 ## Features
 - **Automated Placement Data Entry** which reduces Manual Work for Training & Placement Cells
+- **Individual Portals** for admin, companies and students
 - **Data Cleaning** which cleans and standardardize the past 4 years placement data
 - **Data Analysis** Gain Actionable Insights into Placement Records, Skills and Outcomes
 - **Recruitment Assistance** Student Eligible for Company Based on Matching CGPA and Provides filtering and searching candidates
