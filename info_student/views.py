@@ -96,13 +96,18 @@ class CompanyView(ListCreateAPIView):
         user=User.objects.get(id=pk)
         res=Resume.objects.get(user=user)
         user_email=SearchJob.objects.filter(job_title=job)  
-        #users=user_email.objects.filter(cgpa>=cgpa)
         email_of_all=[]
         users_all=[]
         resume_set=[]
         for users in user_email:
-            users_all.append(users)
-            email_of_all.append(users.email)
+            print(users)
+            cgpa_=users.cgpa
+            print(cgpa)
+            print(cgpa_)
+            if cgpa<=cgpa_:
+                print("yes")
+                users_all.append(users)
+                email_of_all.append(users.email)
         email_body = 'Hi ' + \
             '\nThis candidate is elligible for the job offred by you.\nDetails of User:\n'+\
                 'Name:'+'\nPhone_number:'+'\nEmail:\n'
@@ -303,4 +308,23 @@ class ShortlistResumesView(View):
                                 shortlisted.append(resume.name)
                                 break
 
-        return JsonResponse({'shortlisted': shortlisted})    
+        return JsonResponse({'shortlisted': shortlisted})  
+# from . import recommender  
+# from .recommender import *
+# from django.core.serializers.json import DjangoJSONEncoder
+# def hello_world(request):
+#     if request.method == 'POST':
+#         result = request.form
+#         context = {
+#        "REQUIREMENT": {
+#             "HTML": int(result['html']),
+#             "Python": int(result['python']),
+#             "Java": int(result['java']),
+#             "C": int(result['c']),
+#             "JavaScript": int(result['javascript'])}
+#      }
+#          num_of_candidate = int(result['candidate'])
+#          result = recommender.topMatches(context, recommender.dataFrame, "REQUIREMENT", num_of_candidate)
+#          return render("index.html", result=result)
+
+#     return render("index.html", result=[("name","Score")])

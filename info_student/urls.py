@@ -16,6 +16,7 @@ urlpatterns = [
     path('year_view/',YearAnalysisView.as_view()),
     path('admin_view_email/<str:pk>',CompanyEmailService.as_view()),
     path('resume_pdf/<str:pk>',ResumeView.as_view()),
+    # path('recommendation/',hello_world),
     path('response/<str:text>',gpt3)
 ]
 
