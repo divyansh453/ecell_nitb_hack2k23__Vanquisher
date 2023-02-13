@@ -92,6 +92,7 @@ class CompanyView(ListCreateAPIView):
         pk=self.kwargs.get("pk")
         job=serializer.validated_data["job_title"]
         cgpa=serializer.validated_data["cgpa"]
+        package=serializer.validated_data["package"]
         job=job.title()
         user=User.objects.get(id=pk)
         res=Resume.objects.get(user=user)
@@ -100,12 +101,9 @@ class CompanyView(ListCreateAPIView):
         users_all=[]
         resume_set=[]
         for users in user_email:
-            print(users)
             cgpa_=users.cgpa
-            print(cgpa)
-            print(cgpa_)
-            if cgpa<=cgpa_:
-                print("yes")
+            package_=users.package
+            if int(cgpa)<=int(cgpa_) and int(package_)>=package:
                 users_all.append(users)
                 email_of_all.append(users.email)
         email_body = 'Hi ' + \
