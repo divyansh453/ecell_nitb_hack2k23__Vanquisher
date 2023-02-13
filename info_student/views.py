@@ -326,3 +326,4 @@ class ShortlistResumesView(View):
 #          return render("index.html", result=result)
 
 #     return render("index.html", result=[("name","Score")])
+  
