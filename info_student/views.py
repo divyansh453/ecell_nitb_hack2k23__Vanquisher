@@ -149,7 +149,7 @@ class SearchJobView(ListCreateAPIView):
             '\nYour Candidature has been considered by these companies for the post of '+job_title+'\nCompanies:\n'+name_of_all
             data = {'email_body': email_body, 'to_email': user.email,
                 'email_subject': 'Elligible Candidate'}
-            Util1.send_email(data)
+            Util.send_email(data)
         serializer.save(user=user,full_name=user.full_name,email=user.email,job_title=job,cgpa=cgpa)
     def get_queryset(self):
         pk=self.kwargs.get('pk')
