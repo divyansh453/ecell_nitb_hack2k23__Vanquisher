@@ -202,33 +202,33 @@ class SkillView(ListCreateAPIView):
     def perform_create(self,serializer):
         serializer.save()
     def get_queryset(self):
-        return self.queryset.filter
+        return self.queryset.filter()
     
-import openai
-@api_view(['GET'])
-def gpt3(request,text):
-    stext="Urls of 5 best courses  for "+text +"."
-    openai.api_key='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'
-    response=openai.Completion.create(
-        engine="davinci-instruct-beta",
-        prompt=stext,
-        temperature=0.1,
-        max_tokens=1000,
-        top_p=1,
-        frequency_penalty=0,
-        presence_penalty=0,
-        stop=["\"\"\""]
-     )
+# import openai
+# @api_view(['GET'])
+# def gpt3(request,text):
+#     stext="Urls of 5 best courses  for "+text +"."
+#     openai.api_key='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'
+#     response=openai.Completion.create(
+#         engine="davinci-instruct-beta",
+#         prompt=stext,
+#         temperature=0.1,
+#         max_tokens=1000,
+#         top_p=1,
+#         frequency_penalty=0,
+#         presence_penalty=0,
+#         stop=["\"\"\""]
+#      )
   
-    content=response.choices[0].text.split(".")
-    a=response.choices[0].text
-    response = openai.Image.create(
-    prompt=" Search   "+text+"computer programming language coding  Images. ",
-    n=1,
-    size="1024x1024"
-    )
-    image_url = response['data'][0]['url']
-    return Response({"About":a,"image_url":image_url})
+#     content=response.choices[0].text.split(".")
+#     a=response.choices[0].text
+#     response = openai.Image.create(
+#     prompt=" Search   "+text+"computer programming language coding  Images. ",
+#     n=1,
+#     size="1024x1024"
+#     )
+#     image_url = response['data'][0]['url']
+#     return Response({"About":a,"image_url":image_url})
 class YearAnalysisView(ListCreateAPIView):
     serializer_class=YearAnalysisSerializer
     queryset=Year.objects.all()
