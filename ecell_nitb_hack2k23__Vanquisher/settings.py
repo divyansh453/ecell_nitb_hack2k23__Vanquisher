@@ -15,7 +15,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['ecellnitbhack2k23vanquisher-production.up.railway.app','localhost']
+ALLOWED_HOSTS = ['ecellnitbhack2k23vanquisher-production.up.railway.app','ecellnitbhack2k23vanquisher-production-0ed0.up.railway.app','localhost']
 
 
 
