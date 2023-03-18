@@ -35,6 +35,7 @@ from django.utils.translation import gettext_lazy
 from django.contrib.auth import login,logout
 from django.contrib import auth 
 import os
+
 class RegisterView(generics.GenericAPIView):
 
     serializer_class = RegisterSerializer
@@ -84,14 +85,22 @@ class VerifyEmail(APIView):
 class LoginAPIView(generics.GenericAPIView):
      serializer_class=LoginSerializer
      def post(self,request):
-         serializer=self.serializer_class(data=request.data)
-         roll_number=request.data.get('roll_number','')
-         password=request.data.get('password','')
-         user=auth.authenticate(roll_number=roll_number,password=password)
-         user=User.objects.get(roll_number=roll_number)
-         user_profile=UserProfileSerializer(user,many=False)
-         serializer.is_valid(raise_exception=True)
-         return Response({'login_credentials':serializer.data , 'profile_data':user_profile.data},status=status.HTTP_200_OK)
+        serializer=self.serializer_class(data=request.data)
+        roll_number=request.data.get('roll_number','')
+        password=request.data.get('password','')
+        user=auth.authenticate(roll_number=roll_number,password=password)
+        user=User.objects.get(roll_number=roll_number)
+        user_profile=UserProfileSerializer(user,many=False)
+        serializer.is_valid(raise_exception=True)
+        response.set_cookie(
+                                    key = settings.SIMPLE_JWT['AUTH_COOKIE'], 
+                                    value = data["access"],
+                                    expires = settings.SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'],
+                                    secure = settings.SIMPLE_JWT['AUTH_COOKIE_SECURE'],
+                                    httponly = settings.SIMPLE_JWT['AUTH_COOKIE_HTTP_ONLY'],
+                                    samesite = settings.SIMPLE_JWT['AUTH_COOKIE_SAMESITE']
+                                        )
+        return Response({'login_credentials':serializer.data , 'profile_data':user_profile.data},status=status.HTTP_200_OK)
 class LogoutAPIView(generics.GenericAPIView):
     serializer_class=LogoutSerializer
 

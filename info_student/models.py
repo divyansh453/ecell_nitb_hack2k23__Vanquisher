@@ -20,7 +20,7 @@ class Student_Form(models.Model):
     resources=models.TextField(max_length=500,null=True,blank=True)
     placement=models.CharField(max_length=20)
     cgpa=models.FloatField(validators=[MinValueValidator(1),MaxValueValidator(10)],null=True)
-    date=models.DateField(default=date.today())
+    date=models.DateField(default=timezone.now)
 
     def __str__(self):
         return self.full_name +" "+self.roll_number
@@ -40,7 +40,7 @@ class Student_Form(models.Model):
         day_now=str(self.date)
         day_now=day_now[0:4]
         return day_now
-    
+
 class Company_User(models.Model):  
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     company_name=models.CharField(max_length=100)

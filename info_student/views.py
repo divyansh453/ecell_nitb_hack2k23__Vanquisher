@@ -92,6 +92,7 @@ class CompanyView(ListCreateAPIView):
         pk=self.kwargs.get("pk")
         job=serializer.validated_data["job_title"]
         cgpa=serializer.validated_data["cgpa"]
+        package=serializer.validated_data["package"]
         job=job.title()
         user=User.objects.get(id=pk)
         res=Resume.objects.get(user=user)
@@ -102,9 +103,10 @@ class CompanyView(ListCreateAPIView):
         for users in user_email:
             print(users)
             cgpa_=users.cgpa
-            print(cgpa)
+            package_=users.package
             print(cgpa_)
-            if cgpa<=cgpa_:
+            print(package_)
+            if int(cgpa)<=int(cgpa_) and int(package_)<=package:
                 print("yes")
                 users_all.append(users)
                 email_of_all.append(users.email)
@@ -128,28 +130,6 @@ class SearchJobView(ListCreateAPIView):
         job_title=serializer.validated_data["job_title"]
         job=job_title.title()
         cgpa=user.cgpa
-        company_email=Company_User.objects.filter(job_title=job_title)
-        email_of_all=[]
-        users_all=[]
-        name_of_all=''
-        b=0
-        for company in company_email:
-            email_of_all.append(company)
-            b=b+1
-            name_of_all=str(b)+name_of_all+company.company_name+'\n'
-        for company_email in email_of_all:
-            email_body = 'Hi '+company_email.company_name + \
-            '\nThis candidate is elligible for the job offered by you for the post of '+job_title+'.\nDetails of User:\n'+\
-                'Name:'+user.full_name+'\nPhone_number:'+user.mobile_number+'\nEmail:\n'+user.email
-            data = {'email_body': email_body, 'to_email': company_email.email,
-                'email_subject': 'Elligible Candidate'}
-            Util.send_email(data)
-        if company_email:
-            email_body = 'Hi '+user.full_name + \
-            '\nYour Candidature has been considered by these companies for the post of '+job_title+'\nCompanies:\n'+name_of_all
-            data = {'email_body': email_body, 'to_email': user.email,
-                'email_subject': 'Elligible Candidate'}
-            Util1.send_email(data)
         serializer.save(user=user,full_name=user.full_name,email=user.email,job_title=job,cgpa=cgpa)
     def get_queryset(self):
         pk=self.kwargs.get('pk')
@@ -224,6 +204,9 @@ class SkillView(ListCreateAPIView):
     queryset=Skills.objects.all()
     def perform_create(self,serializer):
         serializer.save()
+    def get_queryset(self):
+        return self.queryset.filter
+    
 import openai
 @api_view(['GET'])
 def gpt3(request,text):
