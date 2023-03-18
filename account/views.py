@@ -92,14 +92,6 @@ class LoginAPIView(generics.GenericAPIView):
         user=User.objects.get(roll_number=roll_number)
         user_profile=UserProfileSerializer(user,many=False)
         serializer.is_valid(raise_exception=True)
-        response.set_cookie(
-                                    key = settings.SIMPLE_JWT['AUTH_COOKIE'], 
-                                    value = data["access"],
-                                    expires = settings.SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'],
-                                    secure = settings.SIMPLE_JWT['AUTH_COOKIE_SECURE'],
-                                    httponly = settings.SIMPLE_JWT['AUTH_COOKIE_HTTP_ONLY'],
-                                    samesite = settings.SIMPLE_JWT['AUTH_COOKIE_SAMESITE']
-                                        )
         return Response({'login_credentials':serializer.data , 'profile_data':user_profile.data},status=status.HTTP_200_OK)
 class LogoutAPIView(generics.GenericAPIView):
     serializer_class=LogoutSerializer
