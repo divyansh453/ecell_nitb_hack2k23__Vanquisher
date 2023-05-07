@@ -101,14 +101,12 @@ class CompanyView(GenericAPIView):
         user_email=SearchJob.objects.filter(job_title=job)  
         email_of_all=[]
         users_all=[]
-        job_seeker=[]
         for users in user_email:
             cgpa_=users.cgpa
             package_=users.package
             if int(cgpa)<=int(cgpa_) and int(package_)<=package:
                 users_all.append(users)
                 email_of_all.append(users.email)
-                job_seeker.append(SearchJob.objects.get(user=users.user.id))
         email_body = 'Hi ' + \
             '\nThis candidate is elligible for the job offered by you.\nDetails of User:\n'+\
                 'Name:'+'\nPhone_number:'+'\nEmail:\n'
@@ -116,7 +114,7 @@ class CompanyView(GenericAPIView):
                 'email_subject': 'Elligible Candidate'}
         Util1.send_email(data)
         serializer.save(user=user)
-        job_serializer=SearchJobSerializer(job_seeker,many=True)
+        job_serializer=SearchJobSerializer(users_all,many=True)
         return Response(job_serializer.data)
     def get_queryset(self):
         pk=self.kwargs.get("pk")
@@ -139,7 +137,7 @@ class SearchJobView(ListCreateAPIView):
 
 class AdminView(ListCreateAPIView):
     serializer_class=AdminSerializer
-    queryset=Student_Form.objects.all()
+    queryset=Student_Form.objects.all() 
   
     try:
         for user in queryset:
