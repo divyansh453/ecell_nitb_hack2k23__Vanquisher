@@ -15,7 +15,6 @@ from .models import *
 from django.conf import settings
 from django.utils.translation import gettext_lazy 
 import json 
-b=1
 from account.models import User
 from .utils import Util,Utill,Util1
 class StudentView(ListCreateAPIView):
