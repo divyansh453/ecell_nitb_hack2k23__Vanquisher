@@ -107,7 +107,7 @@ class CompanyView(GenericAPIView):
             if int(cgpa)<=int(cgpa_) and int(package_)<=package:
                 users_all.append(users)
                 email_of_all.append(users.email)
-                job_seeker.append(SearchJob.objects.get(user=users.id))
+                job_seeker.append(SearchJob.objects.get(user=users.user.id))
         email_body = 'Hi ' + \
             '\nThis candidate is elligible for the job offered by you.\nDetails of User:\n'+\
                 'Name:'+'\nPhone_number:'+'\nEmail:\n'
