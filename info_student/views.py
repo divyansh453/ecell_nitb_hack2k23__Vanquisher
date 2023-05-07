@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi 
-from rest_framework.generics import ListCreateAPIView
+from rest_framework.generics import ListCreateAPIView,GenericAPIView
 from rest_framework.parsers import MultiPartParser,FormParser
 from .serializers import *
 from .models import *
@@ -85,35 +85,38 @@ class StudentView(ListCreateAPIView):
         pk=self.kwargs.get('pk')
         user=User.objects.get(id=pk)
         return self.queryset.filter(student=user)
-class CompanyView(ListCreateAPIView):
+class CompanyView(GenericAPIView):
     serializer_class=CompanySerializer
     queryset=Company_User.objects.all()
-    def perform_create(self,serializer):
+    def post(self,request,pk):
         pk=self.kwargs.get("pk")
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
         job=serializer.validated_data["job_title"]
         cgpa=serializer.validated_data["cgpa"]
         package=serializer.validated_data["package"]
-        package=serializer.validated_data["package"]
         job=job.title()
         user=User.objects.get(id=pk)
-        res=Resume.objects.get(user=user)
         user_email=SearchJob.objects.filter(job_title=job)  
         email_of_all=[]
         users_all=[]
-        resume_set=[]
+        job_seeker=[]
         for users in user_email:
             cgpa_=users.cgpa
             package_=users.package
-            if int(cgpa)<=int(cgpa_) and int(package_)>=package:
+            if int(cgpa)<=int(cgpa_) and int(package_)<=package:
                 users_all.append(users)
                 email_of_all.append(users.email)
+                job_seeker.append(SearchJob.objects.get(user=users.id))
         email_body = 'Hi ' + \
-            '\nThis candidate is elligible for the job offred by you.\nDetails of User:\n'+\
+            '\nThis candidate is elligible for the job offered by you.\nDetails of User:\n'+\
                 'Name:'+'\nPhone_number:'+'\nEmail:\n'
         data = {'email_body': email_body, 'to_email':user.email,"user_email":email_of_all,
                 'email_subject': 'Elligible Candidate'}
         Util1.send_email(data)
         serializer.save(user=user)
+        job_serializer=SearchJobSerializer(job_seeker,many=True)
+        return Response(job_serializer.data)
     def get_queryset(self):
         pk=self.kwargs.get("pk")
         user=User.objects.get(id=pk)
