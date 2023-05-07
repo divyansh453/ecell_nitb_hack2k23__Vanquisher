@@ -7,7 +7,7 @@ from account import views as user_views
 from django.conf import settings
 from django.conf.urls.static import static
 
-
+b=1
 schema_view = get_schema_view(
    openapi.Info(
       title="T&P Cell APIs",
