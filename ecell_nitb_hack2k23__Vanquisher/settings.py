@@ -15,7 +15,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['ecellnitbhack2k23vanquisher-production.up.railway.app','ecellnitbhack2k23vanquisher-production-0ed0.up.railway.app','ecellnitbhack2k23vanquisher-production-83db.up.railway.app','localhost']
+ALLOWED_HOSTS = [os.getenv('Host'),'localhost']
 
 
 
@@ -40,12 +40,13 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+CSRF_TRUSTED_ORIGINS =[os.getenv('CSRF_TRUSTED_ORIGIN')]
 ROOT_URLCONF = 'ecell_nitb_hack2k23__Vanquisher.urls'
 SWAGGER_SETTINGS={
     'SECURITY_DEFINITIONS':{
@@ -57,7 +58,7 @@ SWAGGER_SETTINGS={
     }
 }
 AUTH_USER_MODEL='account.User'
-
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -78,16 +79,16 @@ WSGI_APPLICATION = 'ecell_nitb_hack2k23__Vanquisher.wsgi.application'
 
 
 
+
+import dj_database_url
 DATABASES = {
-      'default': {
-        'ENGINE': os.getenv('ENGINE'),
-        'NAME': os.getenv('NAME'),
-        'USER': os.getenv('USER'),
-        'PASSWORD':os.getenv('PASSWORD_RA'),
-        'HOST': os.getenv('HOST'),
-        'PORT':os.getenv('PORT_'),
-    }
+ 'default': dj_database_url.config(
+        # Feel free to alter this value to suit your needs.
+        default=os.getenv('DATABASE_URL'),
+        conn_max_age=600
+    )
 }
+
 
 
 

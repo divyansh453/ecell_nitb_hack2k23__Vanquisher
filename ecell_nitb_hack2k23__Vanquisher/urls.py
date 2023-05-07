@@ -10,7 +10,7 @@ from django.conf.urls.static import static
 
 schema_view = get_schema_view(
    openapi.Info(
-      title="AUTH API",
+      title="T&P Cell APIs",
       default_version='v1',
       description="Test description",
       terms_of_service="https://www.Vanquisher.com/policies/terms/",
