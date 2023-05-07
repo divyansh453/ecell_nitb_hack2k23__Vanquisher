@@ -12,7 +12,7 @@ schema_view = get_schema_view(
    openapi.Info(
       title="T&P Cell APIs",
       default_version='v1',
-      description="Test description",
+      description="You can use these APIs to manage the work of Training and Placement Cell of a College.",
       terms_of_service="https://www.Vanquisher.com/policies/terms/",
       contact=openapi.Contact(email="contact@Vanquisher.local"),
       license=openapi.License(name="BSD License"),
