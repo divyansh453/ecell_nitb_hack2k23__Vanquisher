@@ -16,7 +16,6 @@ from django.conf import settings
 from django.utils.translation import gettext_lazy 
 import json 
 from account.models import User
-b=1
 from .utils import Util,Utill,Util1
 class StudentView(ListCreateAPIView):
     serializer_class=StudentSerializer
