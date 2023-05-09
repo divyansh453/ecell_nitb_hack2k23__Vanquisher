@@ -17,6 +17,7 @@ from django.utils.translation import gettext_lazy
 import json 
 from account.models import User
 from .utils import Util,Utill,Util1
+b=1
 class StudentView(ListCreateAPIView):
     serializer_class=StudentSerializer
     queryset=Student_Form.objects.all()
