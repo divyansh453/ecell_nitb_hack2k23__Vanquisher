@@ -31,7 +31,7 @@ class Util1:
     <p>Email:'''+user.email+'''</p>
     <p>Contact no:'''+user.mobile_number+'''</p>
     <p>CGPA:'''+str(user.cgpa)+'''</p>
-    <p>Thank you for considering MANIT for your recruitment needs. We hope to welcome you in the near future.</p>
+    <p>Thank you for considering AKGEC for your recruitment needs. We hope to welcome you in the near future.</p>
     <p>Sincerely,</p>
     <p>Placement Cell,ABC College</p>
     <br>
@@ -59,10 +59,10 @@ class Utill:
     <p>We extend our warm greetings from the Placement Cell of Ajay Kumar Garg Engineering College , Ghaziabad. It is with great pleasure that we write to extend an invitation for your company to participate in our upcoming campus placement drive.</p>
     <p>At AKGEC , we have a long-standing tradition of producing highly skilled and well-prepared graduates. We are confident that you will discover a wealth of talented and motivated candidates among our students.</p>
     <p>The placement drive is scheduled to take place on ''' +str(date.today())+ ''' and will comprise presentations by our students, followed by interviews with a carefully selected group of candidates. We believe that this event presents a unique opportunity for your company to connect with our students and identify the right individuals for your organization.</p>
-    <p>It would be an honor to have you participate in this event, and we look forward to hearing back from you soon. Should you have any questions or require additional information, please do not hesitate to contact us at '''+ data['phone']+'''.</p>
-    <p>Thank you for considering ABC College for your recruitment needs. We hope to welcome you in the near future.</p>
+    <p>It would be an honor to have you participate in this event, and we look forward to hearing back from you soon. Should you have any questions or require additional information.</p>
+    <p>Thank you for considering AKGEC College for your recruitment needs. We hope to welcome you in the near future.</p>
     <a href="https://carrersome-vanquisher.netlify.app">Go to our website to fill your requirements by logging as company/corporate.</a>
-    <p>Login Credentials for you:<br>Username:2100271530036<br>Password:#string123</p>
+    <p>Login Credentials for you:<br>Username:'''+data['username']+'''<br>Password:'''+data['password']+'''</p>
     <p>Sincerely,</p>
     <p>'''+ data['user_name'] +'''</p>
     <p>Placement Cell, Ajay Kumar Garg Engineering College,Ghaziabad</p>

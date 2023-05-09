@@ -237,6 +237,8 @@ class YearAnalysisView(ListCreateAPIView):
     queryset=Year.objects.all()
     def get_queryset(self):
         return self.queryset.filter()
+from account.serializers import RegisterSerializer
+import requests
 class CompanyEmailService(ListCreateAPIView):
     serializer_class=CompanyEmailSerializer
     queryset=Email_to_Companies.objects.all()
@@ -245,9 +247,31 @@ class CompanyEmailService(ListCreateAPIView):
         company=serializer.validated_data["company"]
         email=serializer.validated_data["email"]
         user=User.objects.get(id=pk)
+        try:
+            new_user=User.objects.get(email=email)
+            roll_number=new_user.roll_number
+            password="company-{}".format(email.split("@")[0])
+            new_user.set_password(password)
+            new_user.isverified=True
+            new_user.save()
+        except:
+            roll_number="company-{}".format(email.split(".")[0])
+            new_user = User.objects.create(roll_number=roll_number,
+            mobile_number="string",
+            email= email,
+            full_name=company,
+            course="College",
+            cgpa= 10,
+            branch="string",
+            gender="string",
+            age= 60,)
+            password="company-{}".format(email.split("@")[0])
+            new_user.set_password(password)
+            new_user.isverified=True
+            new_user.save()
         if user.is_admin:
-            data = {'to_email': email,'employer':company,'phone':user.mobile_number,
-                'email_subject': 'Request for Jobs','user_name':user.full_name}
+            data = {'to_email': email,'employer':company,
+                'email_subject': 'Request for Jobs','user_name':user.full_name,'password':password,'username':roll_number}
             Utill.send_email(data)
             serializer.save()
         else:

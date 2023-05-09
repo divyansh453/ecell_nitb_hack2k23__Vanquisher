@@ -38,7 +38,7 @@ class EmailVerificationSerializer(serializers.ModelSerializer):
         model = User
         fields = ['token']
 class LoginSerializer(serializers.ModelSerializer):
-    roll_number=serializers.CharField(max_length=20)
+    roll_number=serializers.CharField(max_length=40)
     password=serializers.CharField(max_length=68,write_only=True)
     tokens=serializers.CharField(read_only=True)
     class Meta:
