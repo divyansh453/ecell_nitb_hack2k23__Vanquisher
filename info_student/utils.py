@@ -55,7 +55,7 @@ class Utill:
   </head>
   <body >
     <h1>Invitation from the Placement Cell of ABC,Ghaziabad</h1>
-    <p>Dear Raghav,</p>
+    <p>Dear '''+data['employer']+''',</p>
     <p>We extend our warm greetings from the Placement Cell of Alpha Beta College , Ghaziabad. It is with great pleasure that we write to extend an invitation for your company to participate in our upcoming campus placement drive.</p>
     <p>At ABC , we have a long-standing tradition of producing highly skilled and well-prepared graduates. We are confident that you will discover a wealth of talented and motivated candidates among our students.</p>
     <p>The placement drive is scheduled to take place on ''' +str(date.today())+ ''' and will comprise presentations by our students, followed by interviews with a carefully selected group of candidates. We believe that this event presents a unique opportunity for your company to connect with our students and identify the right individuals for your organization.</p>
