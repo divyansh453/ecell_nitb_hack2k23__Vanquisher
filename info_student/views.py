@@ -93,6 +93,7 @@ class CompanyView(GenericAPIView):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         job=serializer.validated_data["job_title"]
+        email=serializer.validated_data["email"]
         cgpa=serializer.validated_data["cgpa"]
         package=serializer.validated_data["package"]
         job=job.title()
@@ -109,7 +110,7 @@ class CompanyView(GenericAPIView):
         email_body = 'Hi ' + \
             '\nThis candidate is elligible for the job offered by you.\nDetails of User:\n'+\
                 'Name:'+'\nPhone_number:'+'\nEmail:\n'
-        data = {'email_body': email_body, 'to_email':user.email,"user_email":email_of_all,
+        data = {'email_body': email_body, 'to_email':email,"user_email":email_of_all,
                 'email_subject': 'Elligible Candidate'}
         Util1.send_email(data)
         serializer.save(user=user)
