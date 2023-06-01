@@ -15,7 +15,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['ecellnitbhack2k23vanquisher-production-ea35.up.railway.app','localhost','tandp.onrender.com']
+ALLOWED_HOSTS = ['ecellnitbhack2k23vanquisher-production-ea35.up.railway.app','localhost','tandp.onrender.com','ecellnitbhack2k23vanquisher-production-62fc.up.railway.app']
 
 
 
@@ -46,7 +46,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-CSRF_TRUSTED_ORIGINS =['https://ecellnitbhack2k23vanquisher-production-ea35.up.railway.app/','https://tandp.onrender.com']
+CSRF_TRUSTED_ORIGINS =['https://ecellnitbhack2k23vanquisher-production-ea35.up.railway.app/','https://tandp.onrender.com','https://ecellnitbhack2k23vanquisher-production-62fc.up.railway.app']
 ROOT_URLCONF = 'ecell_nitb_hack2k23__Vanquisher.urls'
 SWAGGER_SETTINGS={
     'SECURITY_DEFINITIONS':{
