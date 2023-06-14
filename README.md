@@ -21,7 +21,7 @@ With resume shortlisting.
 - Track Your Interview Progress with a Personalized Round Schedule
 - Mentors based on skills, strengths, and aspirations.
 - Chatbot to automate the student and Placement cell conversations
-- Personalised Feeds for the job offers and courses of your choice
+-  Personalised Feeds for the job offers and courses of your choice
 - Automated negotiations and contract management, reducing the time and effort involved in the hiring process
 
 
