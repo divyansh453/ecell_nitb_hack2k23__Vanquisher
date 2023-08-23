@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@800;400&display=swap');
+.records{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url("../images/bgMANIT.svg");
+    background-size: cover;
+}
+.records h2{
+    font-size: 2rem;
+    margin:2rem;
+    font-family: 'Open Sans', sans-serif;
+}
+.records_display{
+    width:90%;
+    margin: auto;
+    display: flex;
+
+}
+.student_record{
+    width:70%;
+    
+}
+.input{
+    border: none;
+    margin: 0.5rem;
+
+}
+.filters h4{
+    margin: 0.5rem 0;
+}
+.records_submit{
+    margin-top: 1rem;
+}

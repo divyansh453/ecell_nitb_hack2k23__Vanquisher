@@ -1,0 +1,39 @@
+.myprofile{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    background-image: url("../images/bgMANIT.svg");
+    background-size: cover;
+}
+.profile_form{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    box-shadow: 1px 1px 10px grey;
+    border-radius: 5px;
+    margin-top: 2rem;
+}
+.inputcontrol{
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem;
+}
+.inputcontrol label{
+    margin: 0 0.5rem;
+}
+.inputset{
+    padding:0.3rem 1rem;
+    /* border: none; */
+    margin:0.4rem;
+    outline: none;
+}
+.profilefirst{
+    padding:2rem;
+}
+.profile_submit{
+    margin: 0 0.5rem;
+    
+}
